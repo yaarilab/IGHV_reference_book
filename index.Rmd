@@ -1,0 +1,96 @@
+---
+title: "IGH Reference Book"
+author: "Ayelet Peres, Gur Yaari"
+publisher: "IARC by AIRR community"
+documentclass: krantz
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+graphics: yes
+lot: yes
+lof: yes
+fontsize: 11pt
+site: bookdown::bookdown_site
+description: "The IGH reference book describes the expressed reference set of the human IGH loci from b cell repertoire data."
+---
+
+<style>
+pre {
+  overflow-x: auto;
+}
+pre code {
+  word-wrap: normal;
+  white-space: pre;
+}
+</style>
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2,
+  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE
+)
+
+options(bookdown.post.latex = function(x) {
+  # only build a skeleton for the online version
+  if (Sys.getenv('BOOKDOWN_FULL_PDF', '') == 'false') return(bookdown:::strip_latex_body(
+    x, '\nThis PDF is only a skeleton. Please either read the free online HTML version.\n'
+    ))
+  # fix syntax highlighting:
+  # \FunctionTok{tufte:}\AttributeTok{:tufte_html: default} ->
+  # \FunctionTok{tufte::tufte_html:}\AttributeTok{ default}
+  x = gsub('(\\\\FunctionTok\\{[^:]+:)(})(\\\\AttributeTok\\{)(:[^:]+:)', '\\1\\4\\2\\3', x)
+  # an ugly hack for Table 16.1 (Pandoc's widths are not good)
+  if (length(i <- grep('\\caption{\\label{tab:sizing-policy}', x, fixed = TRUE)) == 0)
+    stop('Table 16.1 not found')
+  x[i - 1] = gsub('\\real{0.50}', '\\real{0.67}', x[i - 1], fixed = TRUE)
+  x[i - 2] = gsub('\\real{0.50}', '\\real{0.33}', x[i - 2], fixed = TRUE)
+  # not sure if the following tweaks are still necessary
+  if (FALSE) {
+  if (length(i <- grep('^\\\\begin\\{longtable\\}', x)) == 0) return(x)
+  i1 = bookdown:::next_nearest(i, which(x == '\\toprule'))
+  i2 = bookdown:::next_nearest(i, which(x == '\\endfirsthead'))
+  x[i1 - 1] = paste0(x[i1 - 1], '\n\\begin{tabular}{', gsub('[^lcr]', '', gsub('.*\\[]', '', x[i])), '}')
+  x[i] = '\\begin{table}'
+  x[x == '\\end{longtable}'] = '\\end{tabular}\n\\end{table}'
+  x[x == '\\endhead'] = ''
+  x = x[-unlist(mapply(seq, i1, i2, SIMPLIFY = FALSE))]
+  }
+  x
+})
+
+knitr::opts_chunk$set(echo = FALSE, warning = F, error=F, message = F)
+#options(repos = BiocManager::repositories())
+pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales',
+               'ggplot2', 'rdrop2', 'shiny', 'BiocManager',
+               'dendextend', 'data.table', 'Biostrings', 'alakazam', "unikn", 
+               'plotly', "jcolors", 'ggdendro', "RColorBrewer","kmer","heatmaply", install = F)
+```
+
+This reference book is a collection of insights about the expressed IGHV genes in B cell repertoires, collected from several studies. The book showcases the dynamics between the known and novel alleles and offers a new way of inferring genotypes from expressed repertoires sequencing data. 
+
+# Preface
+
+### Why reference book?
+
+With the newly gained information over the last two decades, it is time to re-evaluate how we infer and analyze genes and alleles in the expressed repertoire. IGHV  alleles hold valuable information about the function of the adaptive immune system. This book uses IGH repertoires from VDJbase.org and describes a new way of exploring the expressed alleles and inferring genotypes. The book:
+
+* Shows the expressed repertoire data of four projects from VDJbase.org.
+* Includes interactive and dynamic visualizations.
+* Integrated with applications that allow you to “play” with the data to gain new insights.
+* Express yourself! Each page includes a comment section where you can add insights and thoughts about the expressed alleles and visualizations (under development). 
+
+
+
+Genotyping is summarizing the genes and alleles an individual carries. Though capturing this information from genomic data is technically feasible, this is a very challenging task due to the highly repetitive nature of these genomic loci. In recent years several methods have been developed to deduce this information from expressed B cell receptor repertoires. These methods rely on a pre-set maximum number of alleles per gene that can appear in the genotype and the overall expression of the alleles. Although the current methods have their merits, they do possess several cavities that can bias the inferred genotypes. One major pitfall is the goodness of the alignment. Each aligned sequence is assigned with one or more matching allele annotations. Several factors can cause errors in the final annotations for each given sequence, the major ones are somatic hypermutations, the length of the sequenced V(D)J segments, and the quality of the sequencing. The existing genotype inference methods attempt to overcome these factors but are not very successful. In this book, we raise the idea of abandoning the concept of genes for inferring a genotype and rather determining the alleles directly. To better understand the influence of the alleles on one another, the alleles were divided into functional groups. These groups were clustered based on the nucleotide level similarity between the allele’s germline sequence (For more information see chapter 1). This concept of allele clustering is not new and was previously performed by IMGT. Yet, with gained information from the last two decades on the expressed alleles, we sought to re-group the alleles. This re-grouping into the functional groups is consistent with the observed multiple annotations in sequences within the expressed repertoires. 
+
+### How to read this book?
+
+Each chapter of this book showcases a different IGHV functional group. The chapters include information on the expression of the alleles assigned to these groups in several projects. Our allele-based genotype method has set allele thresholds and options to interactively “play” with the data, to gain insights into the group’s expressed alleles and the genotype combinations. 
+
+We included the functional groups for full and partial (BIOMED-2) length V segments. The groups’ numbers differ between the V lengths as the clustering is done based on the given germline length.
+
+### Who are we?
+
+We are part of the AIRR community and members of the IARC committee. Our target is to make immune repertoire exploration more accessible and fun! We want to create a space where we can discuss and explore the IGH reference and gain insights from the community. 
+
+

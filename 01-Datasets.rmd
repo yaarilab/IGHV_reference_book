@@ -1,0 +1,74 @@
+# Introduction
+
+## Datasets and processing
+Summary statistics for each of the functional groups declared in the app.
+
+The book includes these datasets taken from [VDJbase.org](vdjbase.org):
+
+```{r table2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|dataset | Type | Sequence Length|
+|:------:|:----:|:---------------:|
+|P1      | Naive| Full length    |
+|P11     | Naive| Full length    |
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+The repertoires have been processed as following:
+
+* Functional sequence, no stop codons or frame shifts.
+* Sequences which start from position 1 of the V gene for full length sequences.
+* Sequences which didn't include any gaps (-) or any N's in the V region.
+* After changing into group annotations, sequences which had more than a single assignment in naive repertoires were remove.
+
+
+## Alleles functional group 
+
+The term ‘Alleles groups’ defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles' germline sequences. A distance matrix of all alleles’ hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles groups.
+
+For this IGH reference book we have used the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5' region as well as those that are less then 318 nucleotides.
+
+The book will also defines the group for partial V sequence, those are are the cause of different library amplicon protocols.
+
+##### We will adapte the alleles group to three protocols:
+
+
+```{r protocols, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|Library amplicon length | Coverage | Similar known protocl |
+|:--------------:|:-------------:|:------:|
+|S1      | Full length | 5' Race|
+|S2      | Starting within the framework 1 | BIOMED-2|
+|S3      | End of the V region | Adaptive|
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+An illustration of the sequences length can be seen below:
+
+```{r, include=TRUE, fig.align="center", echo=FALSE}
+knitr::include_graphics("figures/length_amplicon.png")
+```
+
+
+The figure bellow shows the relation between the International Union of Immunological Societies (IUIS) and IMGT named alleles and the clustered alleles' groups.
+
+
+```{r, include=TRUE, fig.align="center", fig.cap=c("Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the groups and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library's germline set."), echo=FALSE}
+knitr::include_graphics("figures/cluster_groups.png")
+```   
+
+
+##### To summarise the alleles group: 
+
+```{r, echo=F}
+
+knitr::kable(data.frame(Length = c("IUIS/IMGT","S1","S2","S3"), Family = c(7,8,"-","-"), Group = c(54, 47, 44, 11), Alleles = c(286,279,247,130)))
+
+```
+
+
+
+
+
