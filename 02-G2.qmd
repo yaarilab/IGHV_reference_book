@@ -5,7 +5,6 @@ execute:
   warning: false
   message: false
 format: html
-server: shiny
 ---
 ```{r}
 source("functions.R")
