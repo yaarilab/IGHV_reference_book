@@ -1,0 +1,9 @@
+# Welcome {.unnumbered}
+
+This reference book is a collection of insights about the expressed IGHV genes in B cell repertoires, collected from several studies. The book showcases the dynamics between the known and novel alleles and offers a new way of inferring genotypes from expressed repertoires sequencing data.
+
+**Please note that this is the beta version and it will keep updating**
+
+## License
+
+This book is **free to use**, and is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. If you'd like to give back, please consider reporting a typo or leaving a pull request at [github.com/ayeletperes/reference_book](https://github.com/ayeletperes/reference_book/).

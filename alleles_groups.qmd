@@ -1,0 +1,88 @@
+---
+title: "Alleles cluster group"
+execute:
+  echo: false
+format: html
+server: shiny
+---
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2,
+  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE
+)
+
+options(bookdown.post.latex = function(x) {
+  # only build a skeleton for the online version
+  if (Sys.getenv('BOOKDOWN_FULL_PDF', '') == 'false') return(bookdown:::strip_latex_body(
+    x, '\nThis PDF is only a skeleton. Please either read the free online HTML version.\n'
+    ))
+  # fix syntax highlighting:
+  # \FunctionTok{tufte:}\AttributeTok{:tufte_html: default} ->
+  # \FunctionTok{tufte::tufte_html:}\AttributeTok{ default}
+  x = gsub('(\\\\FunctionTok\\{[^:]+:)(})(\\\\AttributeTok\\{)(:[^:]+:)', '\\1\\4\\2\\3', x)
+  # an ugly hack for Table 16.1 (Pandoc's widths are not good)
+  if (length(i <- grep('\\caption{\\label{tab:sizing-policy}', x, fixed = TRUE)) == 0)
+    stop('Table 16.1 not found')
+  x[i - 1] = gsub('\\real{0.50}', '\\real{0.67}', x[i - 1], fixed = TRUE)
+  x[i - 2] = gsub('\\real{0.50}', '\\real{0.33}', x[i - 2], fixed = TRUE)
+  # not sure if the following tweaks are still necessary
+  if (FALSE) {
+  if (length(i <- grep('^\\\\begin\\{longtable\\}', x)) == 0) return(x)
+  i1 = bookdown:::next_nearest(i, which(x == '\\toprule'))
+  i2 = bookdown:::next_nearest(i, which(x == '\\endfirsthead'))
+  x[i1 - 1] = paste0(x[i1 - 1], '\n\\begin{tabular}{', gsub('[^lcr]', '', gsub('.*\\[]', '', x[i])), '}')
+  x[i] = '\\begin{table}'
+  x[x == '\\end{longtable}'] = '\\end{tabular}\n\\end{table}'
+  x[x == '\\endhead'] = ''
+  x = x[-unlist(mapply(seq, i1, i2, SIMPLIFY = FALSE))]
+  }
+  x
+})
+
+knitr::opts_chunk$set(echo = FALSE, warning = F, error=F, message = F)
+#options(repos = BiocManager::repositories())
+pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales',
+               'ggplot2', 'rdrop2', 'shiny', 'BiocManager',
+               'dendextend', 'data.table', 'Biostrings', 'alakazam', "unikn", 
+               'plotly', "jcolors", 'ggdendro', "RColorBrewer","kmer","heatmaply", install = F)
+```
+
+The term 'Alleles groups' defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles' germline sequences. A distance matrix of all alleles' hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles groups.
+
+This IGH reference book uses the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5' region as well as those that are less then 318 nucleotides.
+
+## Library amplicon length
+
+Even though, we wish that all repertoires data available will cover the entire V region this is not always the case. Hence, we adapted our protocols to fit partial V coverage libraries. For the beginning we chose two library amplicon length, BIOMED-2 primers and Adaptive region coverage. The table below summaries the naming for each of the amplicon lengths and see @fig-coverage for coverage illustration:
+
+| Library amplicon length | Coverage                                | Similar known protocol |
+|--------------------|--------------------------------|--------------------|
+| S1                      | Full length - 1 to 318 (IMGT numbering) | 5' Race                |
+| S2                      | Starting within the framework 1 region  | BIOMED-2               |
+| S3                      | End of the V region                     | Adaptive               |
+
+![V library amplicon length. Each row is a different V coverage, S1 for full length, S2 for BIOMED-2 primers, and S3 for adaptive coverage. The colors indicates the V regions according to IMGT numbering, where dark gray represents the IMGT gaps.](figures/length_amplicon.png){#fig-coverage}
+
+## Genes to alleles' groups
+
+To illustrate the relation between the International Union of Immunological Societies (IUIS) and IMGT named alleles and the clustered alleles' groups we created the figure @fig-clustergroup.
+
+![Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the groups and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library's germline set.](figures/cluster_groups.png){#fig-clustergroup align="center"}
+
+## Alleles' group summary
+
+| Length    | Family | Group | Alleles |
+|-----------|--------|-------|---------|
+| IUIS/IMGT | 7      | 54    | 286     |
+| S1        | 8      | 47    | 279     |
+| S2        |        | 44    | 247     |
+| S3        |        | 11    | 130     |
+
+## Create your own groups
+
+We created the app below to allow you to create alleles' groups based on your own reference.
+
+```{=html}
+ <iframe id="example1" src="https://peresay.shinyapps.io/reference_cluster_app/" style="border: none; width: 100%; height: 720px" frameborder="0"></iframe>
+```

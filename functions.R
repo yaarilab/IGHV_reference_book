@@ -1,3 +1,8 @@
+pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales',
+               'ggplot2', 'rdrop2', 'shiny', 'BiocManager',
+               'dendextend', 'data.table', 'Biostrings', 'alakazam', "unikn", 
+               'plotly', "jcolors", 'ggdendro', "RColorBrewer","kmer","heatmaply", install = F)
+
 ## functions
 absolute_thresholds_dict <- list(
   "IGHV1-18G1" = c(

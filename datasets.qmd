@@ -1,0 +1,22 @@
+# Datasets and processing
+Summary statistics for each of the functional groups declared in the app.
+
+The book includes these datasets taken from [VDJbase.org](vdjbase.org):
+
+```{r table2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|dataset | Type | Sequence Length|
+|:------:|:----:|:---------------:|
+|P1      | Naive| Full length    |
+|P11     | Naive| Full length    |
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+The repertoires have been processed as following:
+
+* Functional sequence, no stop codons or frame shifts.
+* Sequences which start from position 1 of the V gene for full length sequences.
+* Sequences which didn't include any gaps (-) or any N's in the V region.
+* After changing into group annotations, sequences which had more than a single assignment in naive repertoires were remove.
+
