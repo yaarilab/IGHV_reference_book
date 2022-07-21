@@ -13,13 +13,14 @@ book:
     style: docked
     background: light
   search: true
-  repo-url: https://github.com/ayeletperes/reference_book/issues
-  repo-actions: [edit]
+  site-url: https://yaarilab.github.io/IGHV_reference_book/
+  repo-url: https://github.com/yaarilab/IGHV_reference_book/issues
+  repo-actions: [issue]
   sharing: [twitter, facebook, linkedin]
   collapse-level: 1
   page-navigation: true
   page-footer: |
-    <li><a href="./">© Copyright 2021 [The Functional Group Authors] (https://github.com/ayeletperes/reference_book/master/AUTHORS) Software licensed under the [Apache License, v2.0] (https://www.apache.org/licenses/LICENSE-2.0).</a></li>
+    <li><a href="./">© Copyright 2021 [The Functional Group Authors] (https://github.com/yaarilab/IGHV_reference_book/master/AUTHORS) Software licensed under the [Apache License, v2.0] (https://www.apache.org/licenses/LICENSE-2.0).</a></li>
   chapters:
     - index.qmd
     - preface.qmd
@@ -76,8 +77,8 @@ book:
 
 
 comments:
-  utterances:
-    repo: ayeletperes/reference_book_test/docs
+  giscus:
+    repo: yaarilab/IGHV_reference_book/
   
 format:
   html:
