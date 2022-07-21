@@ -2,6 +2,8 @@
 title: 'IGHV3-20'
 execute:
   echo: false
+  warning: false
+  message: false
 format: html
 server: shiny
 ---

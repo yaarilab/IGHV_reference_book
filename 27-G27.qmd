@@ -2,6 +2,8 @@
 title: 'IGHV3-64D/IGHV3-64'
 execute:
   echo: false
+  warning: false
+  message: false
 format: html
 server: shiny
 ---

@@ -2,9 +2,12 @@
 title: 'IGHV1-18'
 execute:
   echo: false
+  warning: false
+  message: false
 format: html
 server: shiny
 ---
+
 ```{r}
 source("functions.R")
 ```
@@ -41,11 +44,11 @@ gr <- allele_db %>% filter(gene_group == g_group) %>% pull(group) %>% unique()
 g <- allele_db %>% filter(gene_group == g_group) %>% pull(gene) %>% unique()
 ```
 
-## Allele appearnce 
+## Allele appearnce
 
 The group of `r group` includes `r length(grep(g_group,allele_db$new_allele,value=T))` alleles, `r sum(func$functionality[func$allele %in% allele_db$or_allele[grep(g_group,allele_db$new_allele)]])` out of the alleles are functional.
 
-For each allele we counted the number of appearances across the population, any appearance was considered valid. 
+For each allele we counted the number of appearances across the population, any appearance was considered valid.
 
 ```{r}
 allele_appearance(data, g_group, allele_db)
@@ -59,6 +62,7 @@ Based on the viewed alleles, we calculated the distance between the germline seq
 v_calls <- unique(data[grepl(g_group,v_gene),v_call])
 seq_align(v_calls, allele_db, vgerms, chain, mat, g_group)
 ```
+
 ```{r, fig.width=18,fig.height=30}
 v_calls <- unique(data[grepl(g_group,v_gene),v_call])
 seq_align2(v_calls, allele_db, vgerms, chain, mat, g_group)
@@ -75,7 +79,6 @@ tagList(sequence_depth(data, g_group, allele_db))
 ## Absolute cutoff
 
 We set an initial cutoff of $0.01\%$ to determine the potential genotype priors. For this cutoff we examined the zygousity state, such as homozygousity, heterozygousity and so on.
-
 
 ```{r}
 
@@ -104,8 +107,9 @@ source_haplo_usage(g_group, allele_thresh)
 
 ## Conclusions
 
-From the results we believe that the cutoff for this group should be 
-```{r} 
+From the results we believe that the cutoff for this group should be
+
+```{r}
 DT::datatable(data.frame(thresholds = absolute_thresholds_dict[[g_group]]))
 ```
 
@@ -132,6 +136,7 @@ DT::datatable(
 # column names change to Zygousity state, alleles combinations, IQR 
 
 ```
+
 ```{r, out.height= "100%", out.width="100%"}
 m <- list(
     l = 50,
@@ -143,4 +148,3 @@ m <- list(
 heatmap_alleles(data, g_group, allele_db, func)%>%
   layout(autosize = F, width = 800, height = 1300)
 ```
-

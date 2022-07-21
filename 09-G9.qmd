@@ -2,6 +2,8 @@
 title: 'IGHV1-69D/IGHV1-69'
 execute:
   echo: false
+  warning: false
+  message: false
 format: html
 server: shiny
 ---
