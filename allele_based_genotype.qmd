@@ -1,9 +1,9 @@
 ---
-title: "Allele-based genotype"
 format: html
 editor: visual
+comments: false
 ---
-
+# Allele-based genotype {.unnumbered}
 Genotyping an Individual's repertoire is becoming a common practice in down stream analysis. There are several tools nowadays to achieve such inference, namely TIgGER and IgDiscover. Though the methods are doing a fine job at inferring the genotype in high accuracy, they often neglect to detect lowly frequent alleles. The set of restriction the methods operates under enhance the specificity over the sensitivity.
 
 Aside from low frequent alleles, another limitation that can hinder genotype inference is sequence multiple assignment. Each sequence in the repertoire is assigned its inferred V(D)J alleles for each of the segments. The assignments can be influenced by several factors, such as sequencing errors, somatic hyper mutations, amplicon length, and the initial reference set. This confounding factors can results in assigning more than a single allele per sequence segment. This multiple assignment has a downstream affect on the genotype inference. Each tool tries to deal with this effect in various ways.

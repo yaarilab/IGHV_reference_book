@@ -26,59 +26,58 @@ book:
     - preface.qmd
     - alleles_groups.qmd
     - datasets.qmd
-    - allele_based_genotype.qmd
-    - 01-G1.qmd
-    - 02-G2.qmd
-    - 03-G3.qmd
-    - 04-G4.qmd
-    - 05-G5.qmd
-    - 06-G6.qmd
-    - 07-G7.qmd
-    - 08-G8.qmd
-    - 09-G9.qmd
-    - 10-G10.qmd
-    - 11-G11.qmd
-    - 12-G12.qmd
-    - 13-G13.qmd
-    - 14-G14.qmd
-    - 15-G15.qmd
-    - 16-G16.qmd
-    - 17-G17.qmd
-    - 18-G18.qmd
-    - 19-G19.qmd
-    - 20-G20.qmd
-    - 21-G21.qmd
-    - 22-G22.qmd
-    - 23-G23.qmd
-    - 24-G24.qmd
-    - 25-G25.qmd
-    - 26-G26.qmd
-    - 27-G27.qmd
-    - 28-G28.qmd
-    - 29-G29.qmd
-    - 30-G30.qmd
-    - 31-G31.qmd
-    - 32-G32.qmd
-    - 33-G33.qmd
-    - 34-G34.qmd
-    - 35-G35.qmd
-    - 36-G36.qmd
-    - 37-G37.qmd
-    - 38-G38.qmd
-    - 39-G39.qmd
-    - 40-G40.qmd
-    - 41-G41.qmd
-    - 42-G42.qmd
-    - 43-G43.qmd
-    - 44-G44.qmd
-    - 45-G45.qmd
-    - 46-G46.qmd
+    - part: allele_based_genotype.qmd
+      chapters:
+      - 01-G1.qmd
+      - 02-G2.qmd
+      - 03-G3.qmd
+      - 04-G4.qmd
+      - 05-G5.qmd
+      - 06-G6.qmd
+      - 07-G7.qmd
+      - 08-G8.qmd
+      - 09-G9.qmd
+      - 10-G10.qmd
+      - 11-G11.qmd
+      - 12-G12.qmd
+      - 13-G13.qmd
+      - 14-G14.qmd
+      - 15-G15.qmd
+      - 16-G16.qmd
+      - 17-G17.qmd
+      - 18-G18.qmd
+      - 19-G19.qmd
+      - 20-G20.qmd
+      - 21-G21.qmd
+      - 22-G22.qmd
+      - 23-G23.qmd
+      - 24-G24.qmd
+      - 25-G25.qmd
+      - 26-G26.qmd
+      - 27-G27.qmd
+      - 28-G28.qmd
+      - 29-G29.qmd
+      - 30-G30.qmd
+      - 31-G31.qmd
+      - 32-G32.qmd
+      - 33-G33.qmd
+      - 34-G34.qmd
+      - 35-G35.qmd
+      - 36-G36.qmd
+      - 37-G37.qmd
+      - 38-G38.qmd
+      - 39-G39.qmd
+      - 40-G40.qmd
+      - 41-G41.qmd
+      - 42-G42.qmd
+      - 43-G43.qmd
+      - 44-G44.qmd
+      - 45-G45.qmd
+      - 46-G46.qmd
     
-
-
 comments:
   giscus:
-    repo: yaarilab/IGHV_reference_book/
+        repo:  yaarilab/IGHV_reference_book
   
 format:
   html:

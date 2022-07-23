@@ -1,0 +1,1 @@
+Sitemap: https://yaarilab.github.io/IGHV_reference_book/sitemap.xml

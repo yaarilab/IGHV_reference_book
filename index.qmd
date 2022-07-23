@@ -1,3 +1,6 @@
+---
+comments: false
+---
 # Welcome {.unnumbered}
 
 This reference book is a collection of insights about the expressed IGHV genes in B cell repertoires, collected from several studies. The book showcases the dynamics between the known and novel alleles and offers a new way of inferring genotypes from expressed repertoires sequencing data.

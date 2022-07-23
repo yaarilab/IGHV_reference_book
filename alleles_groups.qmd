@@ -1,11 +1,11 @@
 ---
-title: "Alleles cluster group"
 execute:
   echo: false
 format: html
 server: shiny
+comments: false
 ---
-
+# Alleles cluster group {.unnumbered}
 ```{r setup, include=FALSE}
 options(
   htmltools.dir.version = FALSE, formatR.indent = 2,

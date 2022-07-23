@@ -1,4 +1,7 @@
-# Datasets and processing
+---
+comments: false
+---
+# Datasets and processing {.unnumbered}
 Summary statistics for each of the functional groups declared in the app.
 
 The book includes these datasets taken from [VDJbase.org](vdjbase.org):
