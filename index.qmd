@@ -1,5 +1,6 @@
 ---
 comments: false
+date: "`r Sys.Date()`"
 ---
 # Welcome {.unnumbered}
 
@@ -9,4 +10,4 @@ This reference book is a collection of insights about the expressed IGHV genes i
 
 ## License
 
-This book is **free to use**, and is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. If you'd like to give back, please consider reporting a typo or leaving a pull request at [github.com/ayeletperes/reference_book](https://github.com/ayeletperes/reference_book/).
+This book is **free to use**, and is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) License. If you'd like to give back, please consider reporting a typo or leaving a pull request at [yaarilab/IGHV_reference_book](https://github.com/yaarilab/IGHV_reference_book).

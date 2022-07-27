@@ -8,7 +8,6 @@ project:
 book:
   title: "Reference Book - Beta version"
   author: "Ayelet Peres & Gur Yaari"
-  date: "`r format(Sys.time(), '%d %B, %Y')`"
   logo: figures/myimage.gif
   sidebar:
     style: docked
