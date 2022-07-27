@@ -19,9 +19,9 @@ Genotyping is summarizing the genes and alleles an individual carries. Though ca
 
 ### How to read this book?
 
-Each chapter of this book showcases a different IGHV functional group. The chapters include information on the expression of the alleles assigned to these groups in several projects. Our allele-based genotype method has set allele thresholds and options to interactively "play" with the data, to gain insights into the group's expressed alleles and the genotype combinations.
+Each chapter of this book showcases a different IGHV allele group. The chapters include information on the expression of the alleles assigned to these groups in several projects. Our allele-based genotype method has set allele thresholds and options to interactively "play" with the data, to gain insights into the group's expressed alleles and the genotype combinations.
 
-We included the functional groups for full and partial (BIOMED-2) length V segments. The groups' numbers differ between the V lengths as the clustering is done based on the given germline length.
+We included the allele groups for full and partial (BIOMED-2) length V segments. The groups' numbers differ between the V lengths as the clustering is done based on the given germline length.
 
 ### Who are we?
 

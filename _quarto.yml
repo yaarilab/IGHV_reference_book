@@ -8,6 +8,7 @@ project:
 book:
   title: "Reference Book - Beta version"
   author: "Ayelet Peres & Gur Yaari"
+  date: "`r format(Sys.time(), '%d %B, %Y')`"
   logo: figures/myimage.gif
   sidebar:
     style: docked
@@ -26,6 +27,7 @@ book:
     - preface.qmd
     - alleles_groups.qmd
     - datasets.qmd
+    - allele_based_genotype.qmd
     - part: allele_based_genotype.qmd
       chapters:
       - 01-G1.qmd
@@ -70,10 +72,6 @@ book:
       - 40-G40.qmd
       - 41-G41.qmd
       - 42-G42.qmd
-      - 43-G43.qmd
-      - 44-G44.qmd
-      - 45-G45.qmd
-      - 46-G46.qmd
     
 comments:
   giscus:

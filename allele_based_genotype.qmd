@@ -1,9 +1,15 @@
 ---
 format: html
 editor: visual
+execute:
+  echo: false
+  warning: false
+  message: false
 comments: false
 ---
+
 # Allele-based genotype {.unnumbered}
+
 Genotyping an Individual's repertoire is becoming a common practice in down stream analysis. There are several tools nowadays to achieve such inference, namely TIgGER and IgDiscover. Though the methods are doing a fine job at inferring the genotype in high accuracy, they often neglect to detect lowly frequent alleles. The set of restriction the methods operates under enhance the specificity over the sensitivity.
 
 Aside from low frequent alleles, another limitation that can hinder genotype inference is sequence multiple assignment. Each sequence in the repertoire is assigned its inferred V(D)J alleles for each of the segments. The assignments can be influenced by several factors, such as sequencing errors, somatic hyper mutations, amplicon length, and the initial reference set. This confounding factors can results in assigning more than a single allele per sequence segment. This multiple assignment has a downstream affect on the genotype inference. Each tool tries to deal with this effect in various ways.
@@ -16,4 +22,41 @@ The following thresholds were used for determining presence of an allele in the 
 
 ```{r}
 DT::datatable(read.delim("./data/alleles_db.csv", sep = "\t"), options = list(lengthMenu = c(5, 30, 50), pageLength = 5))
+```
+
+## Inferring the genotype on your own dataset
+
+The processing pipeline for allele-based genotype inference is available on dockerhub: [peresay/suite](https://hub.docker.com/repository/docker/peresay/suite)
+
+### Allele-based pipeline
+
+To process your AIRR-Seq IGH dataset you first need to pull the docker as such
+
+```bash
+docker pull peresay/suite
+```
+
+The you can run the group-pipeline, that infers genotypes using the Allele-based method. 
+
+the are several parameters that can be modified. For the full list please go to the help guide within the docker.
+
+```bash
+# Arguments
+DATA_DIR=~/P1
+FASTA_FILE=/data/P1_I1_S1.fasta
+SAMPLE_NAME=P1_I1_S1
+NPROC=4
+
+# Run pipeline for all avialble parameters
+docker run peresay/suite -h
+
+# Run pipeline for fasta file in docker image
+docker run -v $DATA_DIR:/data:z peresay/suite \
+    group-pipeline -f $FASTA_FILE -s $SAMPLE_NAME -t $NPROC
+
+AIRR_FILE=/data/P1_I1_S1.tsv
+# Run pipeline for airr format file in docker image. 
+docker run -v $DATA_DIR:/data:z peresay/suite \
+    group-pipeline -f $AIRR_FILE -s $SAMPLE_NAME -t $NPROC 
+
 ```

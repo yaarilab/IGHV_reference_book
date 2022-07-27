@@ -48,7 +48,7 @@ pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales',
                'plotly', "jcolors", 'ggdendro', "RColorBrewer","kmer","heatmaply", install = F)
 ```
 
-The term 'Alleles groups' defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles' germline sequences. A distance matrix of all alleles' hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles groups.
+The term 'Allele groups' defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles' germline sequences. A distance matrix of all alleles' hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles groups.
 
 This IGH reference book uses the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5' region as well as those that are less then 318 nucleotides.
 
@@ -81,7 +81,7 @@ To illustrate the relation between the International Union of Immunological Soci
 
 ## Create your own groups
 
-We created the app below to allow you to create alleles' groups based on your own reference.
+We created the app below to allow you to create allele groups based on your own reference.
 
 ```{=html}
  <iframe id="example1" src="https://peresay.shinyapps.io/reference_cluster_app/" style="border: none; width: 100%; height: 720px" frameborder="0"></iframe>
