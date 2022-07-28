@@ -70,11 +70,11 @@
     "text": "Allele’s thresholds\nThe following thresholds were used for determining presence of an allele in the genotype."
   },
   {
-    "objectID": "allele_based_genotype.html#inferring-the-genotype-on-your-own-dataset",
-    "href": "allele_based_genotype.html#inferring-the-genotype-on-your-own-dataset",
+    "objectID": "allele_based_genotype.html#inferring-genotype-on-your-own-dataset",
+    "href": "allele_based_genotype.html#inferring-genotype-on-your-own-dataset",
     "title": "Allele-based genotype",
-    "section": "Inferring the genotype on your own dataset",
-    "text": "Inferring the genotype on your own dataset\nThe processing pipeline for allele-based genotype inference is available on dockerhub: peresay/suite\n\nAllele-based pipeline\nTo process your AIRR-Seq IGH dataset you first need to pull the docker as such\ndocker pull peresay/suite\nThe you can run the group-pipeline, that infers genotypes using the Allele-based method.\nthe are several parameters that can be modified. For the full list please go to the help guide within the docker.\n# Arguments\nDATA_DIR=~/P1\nFASTA_FILE=/data/P1_I1_S1.fasta\nSAMPLE_NAME=P1_I1_S1\nNPROC=4\n\n# Run pipeline for all avialble parameters\ndocker run peresay/suite -h\n\n# Run pipeline for fasta file in docker image\ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $FASTA_FILE -s $SAMPLE_NAME -t $NPROC\n\nAIRR_FILE=/data/P1_I1_S1.tsv\n# Run pipeline for airr format file in docker image. \ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $AIRR_FILE -s $SAMPLE_NAME -t $NPROC"
+    "section": "Inferring genotype on your own dataset",
+    "text": "Inferring genotype on your own dataset\nThe processing pipeline for allele-based genotype inference is available on dockerhub: peresay/suite\n\nAllele-based pipeline\nTo process your AIRR-Seq IGH dataset you first need to pull the docker as such\ndocker pull peresay/suite\nThe you can run the group-pipeline, that infers genotypes using the Allele-based method.\nthe are several parameters that can be modified. For the full list please go to the help guide within the docker.\n# Arguments\nDATA_DIR=~/P1\nFASTA_FILE=/data/P1_I1_S1.fasta\nSAMPLE_NAME=P1_I1_S1\nNPROC=4\n\n# Run pipeline for all avialble parameters\ndocker run peresay/suite -h\n\n# Run pipeline for fasta file in docker image\ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $FASTA_FILE -s $SAMPLE_NAME -t $NPROC\n\nAIRR_FILE=/data/P1_I1_S1.tsv\n# Run pipeline for airr format file in docker image. \ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $AIRR_FILE -s $SAMPLE_NAME -t $NPROC"
   },
   {
     "objectID": "01-G1.html#allele-appearnce",

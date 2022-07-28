@@ -24,7 +24,7 @@ The following thresholds were used for determining presence of an allele in the 
 DT::datatable(read.delim("./data/alleles_db.csv", sep = "\t"), options = list(lengthMenu = c(5, 30, 50), pageLength = 5))
 ```
 
-## Inferring the genotype on your own dataset
+## Inferring genotype on your own dataset
 
 The processing pipeline for allele-based genotype inference is available on dockerhub: [peresay/suite](https://hub.docker.com/repository/docker/peresay/suite)
 
