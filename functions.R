@@ -20,12 +20,19 @@ vgerms <- tigger::readIgFasta("data/reference.fasta")
 allele_appearance <- function(data_, g_group, chain = "IGH") {
   
   data_ <- data_[grepl(g_group, group) & mut == 3 & is.na(j_call),]
+  alleles <- allele_db$or_allele[grepl(g_group, allele_db$func_group)]
+  
+  # add alleles that are not in the dataset
+  
+  data_$imgt_call <- factor(data_$imgt_call, levels = alleles)
+  
   height = (length(unique(data_$imgt_call)))
   height = ifelse(length(height)<20, 25, height)
   height = height*30
   
   p <- ggplot(data_, aes(imgt_call, text = paste0("Group Call: ",call))) + 
     geom_bar() + coord_flip() + facet_wrap(. ~ project, nrow = 3) +
+    scale_x_discrete(drop=FALSE) +
     labs(x = "allele", y = "# Individuals", fill = "") + theme_minimal() +
     theme(
       legend.position = "bottom",
@@ -83,7 +90,7 @@ seq_align <-
            vgerms,
            g_group) {
     alleles <-
-      allele_db %>% dplyr::filter(new_allele %in% v_calls) %>% dplyr::pull(or_allele)
+      allele_db %>% dplyr::filter(func_group %in% g_group) %>% dplyr::pull(or_allele)
     alleles <- unlist(strsplit(alleles,"/"))
     
     new_alleles <- sapply(alleles, function(x){
@@ -151,7 +158,7 @@ seq_align2 <-
            vgerms,
            g_group) {
     alleles <-
-      allele_db %>% dplyr::filter(new_allele %in% v_calls) %>% dplyr::pull(or_allele)
+      allele_db %>% dplyr::filter(func_group %in% g_group) %>% dplyr::pull(or_allele)
     alleles <- unlist(strsplit(alleles,"/"))
     new_alleles <- sapply(alleles, function(x){
       allele_db$new_allele[grepl(paste0(gsub("[*]","[*]",x),"($|/)"),allele_db$or_allele)]
