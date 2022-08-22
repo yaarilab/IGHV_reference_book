@@ -19,7 +19,7 @@ g_group <- allele_db$func_group[grepl(imgt_genes, allele_db$or_allele)] %>% uniq
 
 ## Allele appearnce 
 
-The group of `r paste0(imgt_genes ,"(", g_group, ")")` includes `r length(grep(g_group,allele_db$new_allele,value=T))` functional alleles within it.
+The group of `r paste0('IGHV4-4/IGHV4-59' ,"(", g_group, ")")` includes `r length(grep(g_group,allele_db$func_group,value=T))` functional alleles within it.
 
 For each allele we counted the number of appearances across the population, any appearance was considered valid. 
 

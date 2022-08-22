@@ -14,7 +14,7 @@ book:
     background: none
   search: true
   site-url: https://yaarilab.github.io/IGHV_reference_book/
-  repo-url: https://github.com/yaarilab/IGHV_reference_book/issues
+  repo-url: https://github.com/yaarilab/IGHV_reference_book/
   repo-actions: [issue]
   sharing: [twitter, facebook, linkedin]
   collapse-level: 1
