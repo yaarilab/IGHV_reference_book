@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reference Book - Beta version - Datasets and processing</title>
+<title>Reference Book - Beta version - Annotate your own dataset</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -25,8 +88,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./allele_based_genotype.html" rel="next">
-<link href="./alleles_groups.html" rel="prev">
+<link href="./01-G1.html" rel="next">
+<link href="./allele_based_genotype.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -67,7 +130,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Datasets and processing</h1>
+      <h1 class="quarto-secondary-nav-title">Annotate your own dataset</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -134,7 +197,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./datasets.html" class="sidebar-item-text sidebar-link active">Datasets and processing</a>
+  <a href="./datasets.html" class="sidebar-item-text sidebar-link">Datasets and processing</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -144,7 +207,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster_docker.html" class="sidebar-item-text sidebar-link">Annotate your own dataset</a>
+  <a href="./cluster_docker.html" class="sidebar-item-text sidebar-link active">Annotate your own dataset</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -372,14 +435,25 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#igh-repertoire-processing-pipeline" id="toc-igh-repertoire-processing-pipeline" class="nav-link active" data-scroll-target="#igh-repertoire-processing-pipeline">IGH repertoire processing pipeline</a></li>
+  <li><a href="#run-output-structure" id="toc-run-output-structure" class="nav-link" data-scroll-target="#run-output-structure">Run output structure</a></li>
+  <li><a href="#running-the-docker" id="toc-running-the-docker" class="nav-link" data-scroll-target="#running-the-docker">Running the docker</a>
+  <ul class="collapse">
+  <li><a href="#allele-based-pipeline" id="toc-allele-based-pipeline" class="nav-link" data-scroll-target="#allele-based-pipeline">Allele-based pipeline</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/yaarilab/IGHV_reference_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Datasets and processing</h1>
+<h1 class="title d-none d-lg-block">Annotate your own dataset</h1>
 </div>
 
 
@@ -393,40 +467,109 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>Summary statistics for each of the functional groups declared in the app.</p>
-<p>The book includes these datasets taken from <a href="vdjbase.org">VDJbase.org</a>:</p>
-<div class="cell" data-warnings="false">
-<table class="table table-sm table-striped">
+<p>Annotating and genotyping with the allele-based method can be done using a docker container. The docker is based on the <a href="https://immcantation.readthedocs.io/en/stable/">immcantation docker</a> and holds the pipeline for processing your IGH repertoire sequences.</p>
+<section id="igh-repertoire-processing-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="igh-repertoire-processing-pipeline">IGH repertoire processing pipeline</h2>
+<p>The pipeline is assembled from several steps as described below:</p>
+<ol type="1">
+<li><p>Igblast alignment against the allele clusters reference set</p>
+<ul>
+<li>The IGH allele cluster reference set includes functional allele under the modified names to represent the new clusters.</li>
+<li>Each amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found <a href="https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_full_length_no_gap_nos.fasta">here for S1</a>, and <a href="https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_biomed_length_no_gap_nos.fasta">here for S2</a></li>
+</ul></li>
+<li><p>Inferring novel alleles using the <a href="https://tigger.readthedocs.io/">TIgGER package</a> and re-aligning the sequences against the additional alleles.</p></li>
+<li><p>In case the repertoire is not naive, a clonal inference using <a href="https://changeo.readthedocs.io/">Change-O</a> is preformed. A single clonal representative with the least number of mutation is chosen.</p>
+<ul>
+<li>This step is to reduce the affect of SHM and clonal expansion on the genotype inference.</li>
+</ul></li>
+<li><p>The allele-based genotype is inferred for the V alleles, for the D and J the genotype is inferred using the <a href="https://tigger.readthedocs.io/">TIgGER package</a>. The repertoire is aligned once more with the personal germline set.</p></li>
+</ol>
+</section>
+<section id="run-output-structure" class="level2">
+<h2 class="anchored" data-anchor-id="run-output-structure">Run output structure</h2>
+<p>The output of the pipeline is a nested folder by the name of the sample with the intermidate files of each step and the final analysis files.</p>
+<section id="breakdown-of-the-files-and-folders" class="level4">
+<h4 class="anchored" data-anchor-id="breakdown-of-the-files-and-folders">Breakdown of the files and folders</h4>
+<ul>
+<li><p>Sample.tsv.gz - The aligned repertoire with the personal germline in AIRR-tsv format</p></li>
+<li><p>Sample_V_genotype.tsv - The allele-based genotype inference of the V alleles.</p>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 19%">
+<col style="width: 12%">
+<col style="width: 11%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">dataset</th>
-<th style="text-align: center;">Type</th>
-<th style="text-align: center;">Sequence Length</th>
+<th>subject</th>
+<th>gene</th>
+<th>alleles</th>
+<th>imgt_alleles</th>
+<th>counts</th>
+<th>absolute_fraction</th>
+<th>absolute_threshold</th>
+<th>genotyped_alleles</th>
+<th>genotype_imgt_alleles</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">P1</td>
-<td style="text-align: center;">Naive</td>
-<td style="text-align: center;">Full length</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">P11</td>
-<td style="text-align: center;">Naive</td>
-<td style="text-align: center;">Full length</td>
+<td>sample name</td>
+<td>allele cluster</td>
+<td>the present alleles in the repertoire</td>
+<td>the imgt nomenclature of the alleles</td>
+<td>the number of reads for each alleles</td>
+<td>the absolute fraction of the alleles</td>
+<td>the population driven allele thresholds for genotype presence</td>
+<td>the alleles which entered the genotype</td>
+<td>the imgt nomenclature of the alleles</td>
 </tr>
 </tbody>
-</table>
-</div>
-<p>The repertoires have been processed as following:</p>
-<ul>
-<li>Functional sequence, no stop codons or frame shifts.</li>
-<li>Sequences which start from position 1 of the V gene for full length sequences.</li>
-<li>Sequences which didn’t include any gaps (-) or any N’s in the V region.</li>
-<li>After changing into group annotations, sequences which had more than a single assignment in naive repertoires were remove.</li>
+</table></li>
+<li><p>Sample_geno.tsv - The genotype inference of the D and J genes.</p></li>
+<li><p>source_germline - folder containing the initial germline set</p></li>
+<li><p>novel_germline - if found, the germline set including the inferred novel alleles</p></li>
+<li><p>personal_germline - the personal germline set for V, D, and J based on the genotype</p></li>
+<li><p>analysis_files - the intermediate files.</p></li>
 </ul>
+</section>
+</section>
+<section id="running-the-docker" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-docker">Running the docker</h2>
+<p>The processing pipeline for allele-based genotype inference is available on dockerhub: <a href="https://hub.docker.com/repository/docker/peresay/suite">peresay/suite</a></p>
+<section id="allele-based-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="allele-based-pipeline">Allele-based pipeline</h3>
+<p>To process your AIRR-Seq IGH dataset you first need to pull the docker as such</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull peresay/suite</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The you can run the group-pipeline, which infers genotypes using the Allele-based method.</p>
+<p>there are several parameters that can be modified. For the full list please go to the help guide within the docker.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Arguments</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">DATA_DIR</span><span class="op">=</span>~/P1</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">FASTA_FILE</span><span class="op">=</span>/data/P1_I1_S1.fasta</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">SAMPLE_NAME</span><span class="op">=</span>P1_I1_S1</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">NPROC</span><span class="op">=</span>4</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pipeline for all avialble parameters</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run peresay/suite <span class="at">-h</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pipeline for fasta file in docker image</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$DATA_DIR</span>:/data:z peresay/suite <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    group-pipeline <span class="at">-f</span> <span class="va">$FASTA_FILE</span> <span class="at">-s</span> <span class="va">$SAMPLE_NAME</span> <span class="at">-t</span> <span class="va">$NPROC</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">AIRR_FILE</span><span class="op">=</span>/data/P1_I1_S1.tsv</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Run pipeline for airr format file in docker image. </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-v</span> <span class="va">$DATA_DIR</span>:/data:z peresay/suite <span class="dt">\</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    group-pipeline <span class="at">-f</span> <span class="va">$AIRR_FILE</span> <span class="at">-s</span> <span class="va">$SAMPLE_NAME</span> <span class="at">-t</span> <span class="va">$NPROC</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -528,13 +671,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./alleles_groups.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Allele clusters</span>
+      <a href="./allele_based_genotype.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Allele-based genotype</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./allele_based_genotype.html" class="pagination-link">
-        <span class="nav-page-text">Allele-based genotype</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./01-G1.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">IGHV1-18</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

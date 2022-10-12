@@ -1,0 +1,90 @@
+---
+format: html
+editor: visual
+execute:
+  echo: false
+  warning: false
+  message: false
+comments: false
+---
+
+# Annotate your own dataset {.unnumbered}
+
+Annotating and genotyping with the allele-based method can be done using a docker container. The docker is based on the [immcantation docker](https://immcantation.readthedocs.io/en/stable/) and holds the pipeline for processing your IGH repertoire sequences.
+
+## IGH repertoire processing pipeline
+
+The pipeline is assembled from several steps as described below:
+
+1.  Igblast alignment against the allele clusters reference set
+
+    -   The IGH allele cluster reference set includes functional allele under the modified names to represent the new clusters.
+    -   Each amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found [here for S1](https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_full_length_no_gap_nos.fasta), and [here for S2](https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_biomed_length_no_gap_nos.fasta)
+
+2.  Inferring novel alleles using the [TIgGER package](https://tigger.readthedocs.io/) and re-aligning the sequences against the additional alleles.
+
+3.  In case the repertoire is not naive, a clonal inference using [Change-O](https://changeo.readthedocs.io/) is preformed. A single clonal representative with the least number of mutation is chosen.
+
+    -   This step is to reduce the affect of SHM and clonal expansion on the genotype inference.
+
+4.  The allele-based genotype is inferred for the V alleles, for the D and J the genotype is inferred using the [TIgGER package](https://tigger.readthedocs.io/). The repertoire is aligned once more with the personal germline set.
+
+## Run output structure
+
+The output of the pipeline is a nested folder by the name of the sample with the intermidate files of each step and the final analysis files.
+
+#### Breakdown of the files and folders
+
+-   Sample.tsv.gz - The aligned repertoire with the personal germline in AIRR-tsv format
+
+-   Sample_V\_genotype.tsv - The allele-based genotype inference of the V alleles.
+
+    | subject     | gene           | alleles                               | imgt_alleles                         | counts                               | absolute_fraction                    | absolute_threshold                                            | genotyped_alleles                      | genotype_imgt_alleles                |
+    |-------------|----------------|---------------------------------------|--------------------------------------|--------------------------------------|--------------------------------------|---------------------------------------------------------------|----------------------------------------|--------------------------------------|
+    | sample name | allele cluster | the present alleles in the repertoire | the imgt nomenclature of the alleles | the number of reads for each alleles | the absolute fraction of the alleles | the population driven allele thresholds for genotype presence | the alleles which entered the genotype | the imgt nomenclature of the alleles |
+
+-   Sample_geno.tsv - The genotype inference of the D and J genes.
+
+-   source_germline - folder containing the initial germline set
+
+-   novel_germline - if found, the germline set including the inferred novel alleles
+
+-   personal_germline - the personal germline set for V, D, and J based on the genotype
+
+-   analysis_files - the intermediate files.
+
+## Running the docker
+
+The processing pipeline for allele-based genotype inference is available on dockerhub: [peresay/suite](https://hub.docker.com/repository/docker/peresay/suite)
+
+### Allele-based pipeline
+
+To process your AIRR-Seq IGH dataset you first need to pull the docker as such
+
+``` bash
+docker pull peresay/suite
+```
+
+The you can run the group-pipeline, which infers genotypes using the Allele-based method.
+
+there are several parameters that can be modified. For the full list please go to the help guide within the docker.
+
+``` bash
+# Arguments
+DATA_DIR=~/P1
+FASTA_FILE=/data/P1_I1_S1.fasta
+SAMPLE_NAME=P1_I1_S1
+NPROC=4
+
+# Run pipeline for all avialble parameters
+docker run peresay/suite -h
+
+# Run pipeline for fasta file in docker image
+docker run -v $DATA_DIR:/data:z peresay/suite \
+    group-pipeline -f $FASTA_FILE -s $SAMPLE_NAME -t $NPROC
+
+AIRR_FILE=/data/P1_I1_S1.tsv
+# Run pipeline for airr format file in docker image. 
+docker run -v $DATA_DIR:/data:z peresay/suite \
+    group-pipeline -f $AIRR_FILE -s $SAMPLE_NAME -t $NPROC 
+```

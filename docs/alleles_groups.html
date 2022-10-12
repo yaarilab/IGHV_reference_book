@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reference Book - Beta version - Alleles cluster group</title>
+<title>Reference Book - Beta version - Allele clusters</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,7 +67,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Alleles cluster group</h1>
+      <h1 class="quarto-secondary-nav-title">Allele clusters</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -129,7 +129,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./alleles_groups.html" class="sidebar-item-text sidebar-link active">Alleles cluster group</a>
+  <a href="./alleles_groups.html" class="sidebar-item-text sidebar-link active">Allele clusters</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -142,9 +142,14 @@ ul.task-list{list-style: none;}
   <a href="./allele_based_genotype.html" class="sidebar-item-text sidebar-link">Allele-based genotype</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cluster_docker.html" class="sidebar-item-text sidebar-link">Annotate your own dataset</a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Allele groups</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Allele Clusters</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -372,9 +377,9 @@ ul.task-list{list-style: none;}
    
   <ul>
   <li><a href="#library-amplicon-length" id="toc-library-amplicon-length" class="nav-link active" data-scroll-target="#library-amplicon-length">Library amplicon length</a></li>
-  <li><a href="#genes-to-alleles-groups" id="toc-genes-to-alleles-groups" class="nav-link" data-scroll-target="#genes-to-alleles-groups">Genes to alleles’ groups</a></li>
+  <li><a href="#genes-to-allele-clusters" id="toc-genes-to-allele-clusters" class="nav-link" data-scroll-target="#genes-to-allele-clusters">Genes to allele clusters</a></li>
   <li><a href="#alleles-group-summary" id="toc-alleles-group-summary" class="nav-link" data-scroll-target="#alleles-group-summary">Alleles’ group summary</a></li>
-  <li><a href="#create-your-own-groups" id="toc-create-your-own-groups" class="nav-link" data-scroll-target="#create-your-own-groups">Create your own groups</a></li>
+  <li><a href="#create-your-own-allele-clusters" id="toc-create-your-own-allele-clusters" class="nav-link" data-scroll-target="#create-your-own-allele-clusters">Create your own allele clusters</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/yaarilab/IGHV_reference_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -383,7 +388,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Alleles cluster group</h1>
+<h1 class="title d-none d-lg-block">Allele clusters</h1>
 </div>
 
 
@@ -397,7 +402,7 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>The term ‘Allele groups’ defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles’ germline sequences. A distance matrix of all alleles’ hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles groups.</p>
+<p>The term ‘Allele clusters’ defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles’ germline sequences. A distance matrix of all alleles’ hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles clusters.</p>
 <p>This IGH reference book uses the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5’ region as well as those that are less then 318 nucleotides.</p>
 <section id="library-amplicon-length" class="level2">
 <h2 class="anchored" data-anchor-id="library-amplicon-length">Library amplicon length</h2>
@@ -440,13 +445,13 @@ ul.task-list{list-style: none;}
 </figure>
 </div>
 </section>
-<section id="genes-to-alleles-groups" class="level2">
-<h2 class="anchored" data-anchor-id="genes-to-alleles-groups">Genes to alleles’ groups</h2>
-<p>To illustrate the relation between the International Union of Immunological Societies (IUIS) and IMGT named alleles and the clustered alleles’ groups we created the figure <a href="#fig-clustergroup">Figure&nbsp;<span>2</span></a>.</p>
+<section id="genes-to-allele-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="genes-to-allele-clusters">Genes to allele clusters</h2>
+<p>To illustrate the relation between the International Union of Immunological Societies (IUIS) and IMGT named alleles and the clustered allele clusters we created the figure <a href="#fig-clustergroup">Figure&nbsp;<span>2</span></a>.</p>
 <div id="fig-clustergroup" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/cluster_groups.png" class="img-fluid figure-img" data-align="center"></p>
-<p></p><figcaption class="figure-caption">Figure 2: Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the groups and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library’s germline set.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure 2: Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the clusters and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library’s germline set.</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -489,9 +494,9 @@ ul.task-list{list-style: none;}
 </tbody>
 </table>
 </section>
-<section id="create-your-own-groups" class="level2">
-<h2 class="anchored" data-anchor-id="create-your-own-groups">Create your own groups</h2>
-<p>We created the app below to allow you to create allele groups based on your own reference.</p>
+<section id="create-your-own-allele-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-own-allele-clusters">Create your own allele clusters</h2>
+<p>We created the app below to allow you to create allele clusters based on your own reference.</p>
  <iframe id="example1" src="https://peresay.shinyapps.io/reference_cluster_app/" style="border: none; width: 100%; height: 720px" frameborder="0"></iframe>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">

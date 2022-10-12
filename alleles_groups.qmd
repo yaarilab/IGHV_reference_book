@@ -5,7 +5,7 @@ format: html
 server: shiny
 comments: false
 ---
-# Alleles cluster group {.unnumbered}
+# Allele clusters {.unnumbered}
 ```{r setup, include=FALSE}
 options(
   htmltools.dir.version = FALSE, formatR.indent = 2,
@@ -48,7 +48,7 @@ pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales',
                'plotly', "jcolors", 'ggdendro', "RColorBrewer","kmer","heatmaply", install = F)
 ```
 
-The term 'Allele groups' defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles' germline sequences. A distance matrix of all alleles' hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles groups.
+The term 'Allele clusters' defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles' germline sequences. A distance matrix of all alleles' hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles clusters.
 
 This IGH reference book uses the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5' region as well as those that are less then 318 nucleotides.
 
@@ -64,11 +64,11 @@ Even though, we wish that all repertoires data available will cover the entire V
 
 ![V library amplicon length. Each row is a different V coverage, S1 for full length, S2 for BIOMED-2 primers, and S3 for adaptive coverage. The colors indicates the V regions according to IMGT numbering, where dark gray represents the IMGT gaps.](figures/length_amplicon.png){#fig-coverage}
 
-## Genes to alleles' groups
+## Genes to allele clusters
 
-To illustrate the relation between the International Union of Immunological Societies (IUIS) and IMGT named alleles and the clustered alleles' groups we created the figure @fig-clustergroup.
+To illustrate the relation between the International Union of Immunological Societies (IUIS) and IMGT named alleles and the clustered allele clusters we created the figure @fig-clustergroup.
 
-![Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the groups and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library's germline set.](figures/cluster_groups.png){#fig-clustergroup align="center"}
+![Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the clusters and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library's germline set.](figures/cluster_groups.png){#fig-clustergroup align="center"}
 
 ## Alleles' group summary
 
@@ -79,9 +79,9 @@ To illustrate the relation between the International Union of Immunological Soci
 | S2        |        | 44    | 247     |
 | S3        |        | 11    | 130     |
 
-## Create your own groups
+## Create your own allele clusters
 
-We created the app below to allow you to create allele groups based on your own reference.
+We created the app below to allow you to create allele clusters based on your own reference.
 
 ```{=html}
  <iframe id="example1" src="https://peresay.shinyapps.io/reference_cluster_app/" style="border: none; width: 100%; height: 720px" frameborder="0"></iframe>

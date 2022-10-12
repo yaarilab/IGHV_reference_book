@@ -24,39 +24,3 @@ The following thresholds were used for determining presence of an allele in the 
 DT::datatable(read.delim("./data/alleles_db.csv", sep = "\t"), options = list(lengthMenu = c(5, 30, 50), pageLength = 5))
 ```
 
-## Inferring genotype on your own dataset
-
-The processing pipeline for allele-based genotype inference is available on dockerhub: [peresay/suite](https://hub.docker.com/repository/docker/peresay/suite)
-
-### Allele-based pipeline
-
-To process your AIRR-Seq IGH dataset you first need to pull the docker as such
-
-```bash
-docker pull peresay/suite
-```
-
-The you can run the group-pipeline, that infers genotypes using the Allele-based method. 
-
-the are several parameters that can be modified. For the full list please go to the help guide within the docker.
-
-```bash
-# Arguments
-DATA_DIR=~/P1
-FASTA_FILE=/data/P1_I1_S1.fasta
-SAMPLE_NAME=P1_I1_S1
-NPROC=4
-
-# Run pipeline for all avialble parameters
-docker run peresay/suite -h
-
-# Run pipeline for fasta file in docker image
-docker run -v $DATA_DIR:/data:z peresay/suite \
-    group-pipeline -f $FASTA_FILE -s $SAMPLE_NAME -t $NPROC
-
-AIRR_FILE=/data/P1_I1_S1.tsv
-# Run pipeline for airr format file in docker image. 
-docker run -v $DATA_DIR:/data:z peresay/suite \
-    group-pipeline -f $AIRR_FILE -s $SAMPLE_NAME -t $NPROC 
-
-```

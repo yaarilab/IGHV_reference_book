@@ -26,7 +26,8 @@ book:
     - alleles_groups.qmd
     - datasets.qmd
     - allele_based_genotype.qmd
-    - part: "Allele groups"
+    - cluster_docker.qmd
+    - part: "Allele Clusters"
       chapters:
       - 01-G1.qmd
       - 02-G2.qmd
