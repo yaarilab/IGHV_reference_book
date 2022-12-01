@@ -27,3 +27,8 @@ We included the allele groups for full and partial (BIOMED-2 [@van2003design]) l
 ### Who are we?
 
 We are part of the AIRR community and members of the IARC committee. Our target is to make immune repertoire exploration more accessible and fun! We want to create a space where we can discuss and explore the IGH reference and gain insights from the community.
+
+### References
+
+::: {#refs}
+:::
