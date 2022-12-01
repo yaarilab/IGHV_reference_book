@@ -66,6 +66,6 @@ DT::datatable(data.frame(thresholds = absolute_thresholds_dict[[g_group]]))
 ```{r}
 #The graph below shows the allele-based individual genotype inference for this allele group.
 
-#heatmap_alleles(data_frac, g_group, allele_db)%>%
-#  layout(autosize = F, width = 1000, height = 3000)
+#heatmap_alleles(data_ = data_frac, g_group, allele_db)%>%
+#  layout(autosize = F)
 ```

@@ -11,91 +11,84 @@
     "href": "preface.html",
     "title": "Preface",
     "section": "",
-    "text": "How to read this book?\nEach chapter of this book showcases a different IGHV allele group. The chapters include information on the expression of the alleles assigned to these groups in several projects. Our allele-based genotype method has set allele thresholds and options to interactively “play” with the data, to gain insights into the group’s expressed alleles and the genotype combinations.\nWe included the allele groups for full and partial (BIOMED-2) length V segments. The groups’ numbers differ between the V lengths as the clustering is done based on the given germline length.\n\n\nWho are we?\nWe are part of the AIRR community and members of the IARC committee. Our target is to make immune repertoire exploration more accessible and fun! We want to create a space where we can discuss and explore the IGH reference and gain insights from the community."
+    "text": "How to read this book?\nEach chapter of this book showcases a different IGHV ASC. The chapters include information on the expression of the alleles assigned to these ASCs in several projects. Our ASC-based genotype method has set allele thresholds and options to interactively “play” with the data, to gain insights into the ASC’s expressed alleles and the genotype combinations.\nWe included the allele groups for full and partial (BIOMED-2 (Van Dongen et al. 2003)) length V segments. The ASC numbers differ between the V lengths as the clustering is done based on the given germline length.\n\n\nWho are we?\nWe are part of the AIRR community and members of the IARC committee. Our target is to make immune repertoire exploration more accessible and fun! We want to create a space where we can discuss and explore the IGH reference and gain insights from the community.\n\n\n\n\nCorcoran, Martin M., Ganesh E. Phad, Néstor Vázquez Bernat, Christiane Stahl-Hennig, Noriyuki Sumida, Mats A. A. Persson, Marcel Martin, and Gunilla B. Karlsson Hedestam. 2016. “Production of Individualized v Gene Databases Reveals High Levels of Immunoglobulin Genetic Diversity.” Nature Communications 7 (1): 13642. https://doi.org/10.1038/ncomms13642.\n\n\nGadala-Maria, Daniel, Gur Yaari, Mohamed Uduman, and Steven H. Kleinstein. 2015. “Automated Analysis of High-Throughput b-Cell Sequencing Data Reveals a High Frequency of Novel Immunoglobulin v Gene Segment Alleles.” Proceedings of the National Academy of Sciences 112 (8): E862–70. https://doi.org/10.1073/pnas.1417683112.\n\n\nGiudicelli, Veronique, and Marie-Paule Lefranc. 1999. “Ontology for Immunogenetics: The IMGT-ONTOLOGY.” Bioinformatics 15 (12): 1047–54.\n\n\nMatsuda, Fumihiko, Kazuo Ishii, Patrice Bourvagnet, Kei-ichi Kuma, Hidenori Hayashida, Takashi Miyata, and Tasuku Honjo. 1998. “The Complete Nucleotide Sequence of the Human Immunoglobulin Heavy Chain Variable Region Locus.” The Journal of Experimental Medicine 188 (11): 2151–62.\n\n\nOhlin, Mats. 2021. “Poorly Expressed Alleles of Several Human Immunoglobulin Heavy Chain Variable Genes Are Common in the Human Population.” Frontiers in Immunology 11: 603980.\n\n\nOmer, Aviv, Or Shemesh, Ayelet Peres, Pazit Polak, Adrian J Shepherd, Corey T Watson, Scott D Boyd, Andrew M Collins, William Lees, and Gur Yaari. 2020. “VDJbase: An Adaptive Immune Receptor Genotype and Haplotype Database.” Nucleic Acids Research 48 (D1): D1051–56.\n\n\nSlabodkin, Andrei, Maria Chernigovskaya, Ivana Mikocziova, Rahmad Akbar, Lonneke Scheffer, Milena Pavlović, Habib Bashour, et al. 2021. “Individualized VDJ Recombination Predisposes the Available Ig Sequence Space.” Genome Research 31 (12): 2209–24.\n\n\nVan Dongen, JJM, AW Langerak, M Brüggemann, PAS Evans, M Hummel, FL Lavender, E Delabesse, et al. 2003. “Design and Standardization of PCR Primers and Protocols for Detection of Clonal Immunoglobulin and t-Cell Receptor Gene Recombinations in Suspect Lymphoproliferations: Report of the BIOMED-2 Concerted Action Bmh4-Ct98-3936.” Leukemia 17 (12): 2257–317.\n\n\nWatson, Corey T, Karyn M Steinberg, John Huddleston, Rene L Warren, Maika Malig, Jacqueline Schein, A Jeremy Willsey, et al. 2013. “Complete Haplotype Sequence of the Human Immunoglobulin Heavy-Chain Variable, Diversity, and Joining Genes and Characterization of Allelic and Copy-Number Variation.” The American Journal of Human Genetics 92 (4): 530–46.\n\n\nYaari, Gur, and Steven H Kleinstein. 2015. “Practical Guidelines for b-Cell Receptor Repertoire Sequencing Analysis.” Genome Medicine 7 (1): 1–14.\n\n\nZhang, Bochao, Wenzhao Meng, Eline T Luning Prak, and Uri Hershberg. 2015. “Discrimination of Germline v Genes at Different Sequencing Lengths and Mutational Burdens: A New Tool for Identifying and Evaluating the Reliability of v Gene Assignment.” Journal of Immunological Methods 427: 105–16."
   },
   {
     "objectID": "alleles_groups.html",
     "href": "alleles_groups.html",
-    "title": "Allele clusters",
+    "title": "Allele Similarity Cluster (ASC)",
     "section": "",
-    "text": "The term ‘Allele clusters’ defines alleles that have a degree of germline proximity. The proximity is defined as the hamming distance between the coding region of the alleles’ germline sequences. A distance matrix of all alleles’ hamming distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles clusters.\nThis IGH reference book uses the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5’ region as well as those that are less then 318 nucleotides."
+    "text": "The term Allele similarity clusters (ASC), defines alleles that have a degree of germline proximity. The proximity is defined as the Levenshtein distance between the coding region of the alleles’ germline sequences. A distance matrix of all alleles’ Levenshtein distance is constructed and the hierarchical tree is calculated. The tree leaves are then clustered by 95% similarity which creates the alleles clusters.\nThis IGH reference book uses the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5’ region as well as those that are less then 318 nucleotides."
   },
   {
     "objectID": "alleles_groups.html#library-amplicon-length",
     "href": "alleles_groups.html#library-amplicon-length",
-    "title": "Allele clusters",
+    "title": "Allele Similarity Cluster (ASC)",
     "section": "Library amplicon length",
     "text": "Library amplicon length\nEven though, we wish that all repertoires data available will cover the entire V region this is not always the case. Hence, we adapted our protocols to fit partial V coverage libraries. For the beginning we chose two library amplicon length, BIOMED-2 primers and Adaptive region coverage. The table below summaries the naming for each of the amplicon lengths and see Figure 1 for coverage illustration:\n\n\n\n\n\n\n\n\nLibrary amplicon length\nCoverage\nSimilar known protocol\n\n\n\n\nS1\nFull length - 1 to 318 (IMGT numbering)\n5’ Race\n\n\nS2\nStarting within the framework 1 region\nBIOMED-2\n\n\nS3\nEnd of the V region\nAdaptive\n\n\n\n\n\n\nFigure 1: V library amplicon length. Each row is a different V coverage, S1 for full length, S2 for BIOMED-2 primers, and S3 for adaptive coverage. The colors indicates the V regions according to IMGT numbering, where dark gray represents the IMGT gaps."
   },
   {
     "objectID": "alleles_groups.html#genes-to-allele-clusters",
     "href": "alleles_groups.html#genes-to-allele-clusters",
-    "title": "Allele clusters",
+    "title": "Allele Similarity Cluster (ASC)",
     "section": "Genes to allele clusters",
-    "text": "Genes to allele clusters\nTo illustrate the relation between the International Union of Immunological Societies (IUIS) and IMGT named alleles and the clustered allele clusters we created the figure Figure 2.\n\n\n\nFigure 2: Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the clusters and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library’s germline set."
+    "text": "Genes to allele clusters\nTo illustrate the relation between the International Union of Immunological Societies (IUIS) and IMGT (Giudicelli and Lefranc 1999) named alleles to the clustered allele clusters we created the figure Figure 2.\n\n\n\nFigure 2: Hierarchical clustering of the functional IGH germline set. The inner layer shows a dendrogram of the clustering, the dotted circles indicates the sequence similarity of 75% (orange) and 95% (blue). The dendrogram branches are colored by the 75% sequence similarity. The second, colored circle shows the clusters and alleles for the library amplicon length of S1, the second circle for length of S2, and the third for S3. The white color indicates alleles that cannot be distinguished in the library’s germline set."
   },
   {
     "objectID": "alleles_groups.html#alleles-group-summary",
     "href": "alleles_groups.html#alleles-group-summary",
-    "title": "Allele clusters",
+    "title": "Allele Similarity Cluster (ASC)",
     "section": "Alleles’ group summary",
-    "text": "Alleles’ group summary\n\n\n\nLength\nFamily\nGroup\nAlleles\n\n\n\n\nIUIS/IMGT\n7\n54\n286\n\n\nS1\n8\n47\n279\n\n\nS2\n\n44\n247\n\n\nS3\n\n11\n130"
-  },
-  {
-    "objectID": "alleles_groups.html#create-your-own-allele-clusters",
-    "href": "alleles_groups.html#create-your-own-allele-clusters",
-    "title": "Allele clusters",
-    "section": "Create your own allele clusters",
-    "text": "Create your own allele clusters\nWe created the app below to allow you to create allele clusters based on your own reference."
+    "text": "Alleles’ group summary\n\n\n\nLength\nFamily\nGroup\nAlleles\n\n\n\n\nIUIS/IMGT\n7\n54\n286\n\n\nS1\n8\n47\n279\n\n\nS2\n\n44\n247\n\n\nS3\n\n11\n130\n\n\n\n\n\n\n\n\n\n\n\n\n\nReferences\n\n\nGiudicelli, Veronique, and Marie-Paule Lefranc. 1999. “Ontology for Immunogenetics: The IMGT-ONTOLOGY.” Bioinformatics 15 (12): 1047–54."
   },
   {
     "objectID": "datasets.html",
     "href": "datasets.html",
     "title": "Datasets and processing",
     "section": "",
-    "text": "The book includes these datasets taken from VDJbase.org:\n\n\n\n\ndataset\nType\nSequence Length\n\n\n\n\nP1\nNaive\nFull length\n\n\nP11\nNaive\nFull length\n\n\n\n\nThe repertoires have been processed as following:\n\nFunctional sequence, no stop codons or frame shifts.\nSequences which start from position 1 of the V gene for full length sequences.\nSequences which didn’t include any gaps (-) or any N’s in the V region.\nAfter changing into group annotations, sequences which had more than a single assignment in naive repertoires were remove."
+    "text": "dataset\nType\nSequence Length\n\n\n\n\nP1\nNaive\nFull length\n\n\nP11\nNaive\nFull length\n\n\n\n\nThe repertoires have been processed as following:\n\nFunctional sequence, no stop codons or frame shifts.\nSequences which start from position 1 of the V gene for full length sequences.\nSequences which didn’t include any gaps (-) or any N’s in the V region.\nAfter changing into ASC annotations, sequences which had more than a single assignment in naive repertoires were remove."
   },
   {
     "objectID": "allele_based_genotype.html",
     "href": "allele_based_genotype.html",
-    "title": "Allele-based genotype",
+    "title": "ASC-based genotype",
     "section": "",
-    "text": "Genotyping an Individual’s repertoire is becoming a common practice in down stream analysis. There are several tools nowadays to achieve such inference, namely TIgGER and IgDiscover. Though the methods are doing a fine job at inferring the genotype in high accuracy, they often neglect to detect lowly frequent alleles. The set of restriction the methods operates under enhance the specificity over the sensitivity.\nAside from low frequent alleles, another limitation that can hinder genotype inference is sequence multiple assignment. Each sequence in the repertoire is assigned its inferred V(D)J alleles for each of the segments. The assignments can be influenced by several factors, such as sequencing errors, somatic hyper mutations, amplicon length, and the initial reference set. This confounding factors can results in assigning more than a single allele per sequence segment. This multiple assignment has a downstream affect on the genotype inference. Each tool tries to deal with this effect in various ways.\nIn this reference book we observed the allele distribution across the population and derived threshold for determining genotype inference."
+    "text": "Genotyping an Individual’s repertoire is becoming a common practice in down stream analysis. There are several tools nowadays to achieve such inference, namely TIgGER(Gadala-Maria et al. 2015) and IgDiscover (Corcoran et al. 2016). Though the methods are doing a fine job at inferring the genotype in high accuracy, they often neglect to detect lowly frequent alleles. The set of restriction the methods operates under enhance the specificity over the sensitivity.\nAside from low frequent alleles, another limitation that can hinder genotype inference is sequence multiple assignment. Each sequence in the repertoire is assigned its inferred V(D)J alleles for each of the segments. The assignments can be influenced by several factors, such as sequencing errors, somatic hyper mutations, amplicon length, and the initial reference set. This confounding factors can results in assigning more than a single allele per sequence segment. This multiple assignment has a downstream affect on the genotype inference. Each tool tries to deal with this effect in various ways.\nIn this reference book we observed the allele distribution across the population and derived threshold for determining genotype inference."
   },
   {
     "objectID": "allele_based_genotype.html#alleles-thresholds",
     "href": "allele_based_genotype.html#alleles-thresholds",
-    "title": "Allele-based genotype",
+    "title": "ASC-based genotype",
     "section": "Allele’s thresholds",
-    "text": "Allele’s thresholds\nThe following thresholds were used for determining presence of an allele in the genotype."
+    "text": "Allele’s thresholds\nThe following thresholds were used for determining presence of an allele in the genotype.\n\n\n\n\n\n\n\n\n\n\n\nCorcoran, Martin M., Ganesh E. Phad, Néstor Vázquez Bernat, Christiane Stahl-Hennig, Noriyuki Sumida, Mats A. A. Persson, Marcel Martin, and Gunilla B. Karlsson Hedestam. 2016. “Production of Individualized v Gene Databases Reveals High Levels of Immunoglobulin Genetic Diversity.” Nature Communications 7 (1): 13642. https://doi.org/10.1038/ncomms13642.\n\n\nGadala-Maria, Daniel, Gur Yaari, Mohamed Uduman, and Steven H. Kleinstein. 2015. “Automated Analysis of High-Throughput b-Cell Sequencing Data Reveals a High Frequency of Novel Immunoglobulin v Gene Segment Alleles.” Proceedings of the National Academy of Sciences 112 (8): E862–70. https://doi.org/10.1073/pnas.1417683112."
   },
   {
     "objectID": "cluster_docker.html",
     "href": "cluster_docker.html",
-    "title": "Annotate your own dataset",
+    "title": "Processing AIRR-seq data with the ASC-pipeline",
     "section": "",
     "text": "Annotating and genotyping with the allele-based method can be done using a docker container. The docker is based on the immcantation docker and holds the pipeline for processing your IGH repertoire sequences."
   },
   {
     "objectID": "cluster_docker.html#igh-repertoire-processing-pipeline",
     "href": "cluster_docker.html#igh-repertoire-processing-pipeline",
-    "title": "Annotate your own dataset",
+    "title": "Processing AIRR-seq data with the ASC-pipeline",
     "section": "IGH repertoire processing pipeline",
-    "text": "IGH repertoire processing pipeline\nThe pipeline is assembled from several steps as described below:\n\nIgblast alignment against the allele clusters reference set\n\nThe IGH allele cluster reference set includes functional allele under the modified names to represent the new clusters.\nEach amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found here for S1, and here for S2\n\nInferring novel alleles using the TIgGER package and re-aligning the sequences against the additional alleles.\nIn case the repertoire is not naive, a clonal inference using Change-O is preformed. A single clonal representative with the least number of mutation is chosen.\n\nThis step is to reduce the affect of SHM and clonal expansion on the genotype inference.\n\nThe allele-based genotype is inferred for the V alleles, for the D and J the genotype is inferred using the TIgGER package. The repertoire is aligned once more with the personal germline set."
+    "text": "IGH repertoire processing pipeline\nThe pipeline is assembled from several steps as described below:\n\nIgblast (Ye et al. 2013) alignment against the allele similarity clusters reference set\n\nThe IGH allele similarity cluster reference set includes functional allele under the modified names to represent the new clusters.\nEach amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found here for S1, and here for S2\n\nInferring novel alleles using the TIgGER package and re-aligning the sequences against the additional alleles.\nIn case the repertoire is not naive, a clonal inference using Change-O is preformed. A single clonal representative with the least number of mutation is chosen.\n\nThis step is to reduce the affect of SHM and clonal expansion on the genotype inference.\n\nThe allele-based genotype is inferred for the V alleles, for the D and J the genotype is inferred using the TIgGER package. The repertoire is aligned once more with the personal germline set."
   },
   {
     "objectID": "cluster_docker.html#run-output-structure",
     "href": "cluster_docker.html#run-output-structure",
-    "title": "Annotate your own dataset",
+    "title": "Processing AIRR-seq data with the ASC-pipeline",
     "section": "Run output structure",
-    "text": "Run output structure\nThe output of the pipeline is a nested folder by the name of the sample with the intermidate files of each step and the final analysis files.\n\nBreakdown of the files and folders\n\nSample.tsv.gz - The aligned repertoire with the personal germline in AIRR-tsv format\nSample_V_genotype.tsv - The allele-based genotype inference of the V alleles.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsubject\ngene\nalleles\nimgt_alleles\ncounts\nabsolute_fraction\nabsolute_threshold\ngenotyped_alleles\ngenotype_imgt_alleles\n\n\n\n\nsample name\nallele cluster\nthe present alleles in the repertoire\nthe imgt nomenclature of the alleles\nthe number of reads for each alleles\nthe absolute fraction of the alleles\nthe population driven allele thresholds for genotype presence\nthe alleles which entered the genotype\nthe imgt nomenclature of the alleles\n\n\n\nSample_geno.tsv - The genotype inference of the D and J genes.\nsource_germline - folder containing the initial germline set\nnovel_germline - if found, the germline set including the inferred novel alleles\npersonal_germline - the personal germline set for V, D, and J based on the genotype\nanalysis_files - the intermediate files."
+    "text": "Run output structure\nThe output of the pipeline is a nested folder by the name of the sample with the intermediate files of each step and the final analysis files.\n\nBreakdown of the files and folders\n\nSample.tsv.gz - The aligned repertoire with the personal germline in AIRR-tsv format\nSample_V_genotype.tsv - The allele-based genotype inference of the V alleles.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsubject\ngene\nalleles\nimgt_alleles\ncounts\nabsolute_fraction\nabsolute_threshold\ngenotyped_alleles\ngenotype_imgt_alleles\n\n\n\n\nsample name\nallele cluster\nthe present alleles in the repertoire\nthe imgt nomenclature of the alleles\nthe number of reads for each alleles\nthe absolute fraction of the alleles\nthe population driven allele thresholds for genotype presence\nthe alleles which entered the genotype\nthe imgt nomenclature of the alleles\n\n\n\nSample_geno.tsv - The genotype inference of the D and J genes.\nsource_germline - folder containing the initial germline set\nnovel_germline - if found, the germline set including the inferred novel alleles\npersonal_germline - the personal germline set for V, D, and J based on the genotype\nanalysis_files - the intermediate files."
   },
   {
     "objectID": "cluster_docker.html#running-the-docker",
     "href": "cluster_docker.html#running-the-docker",
-    "title": "Annotate your own dataset",
+    "title": "Processing AIRR-seq data with the ASC-pipeline",
     "section": "Running the docker",
-    "text": "Running the docker\nThe processing pipeline for allele-based genotype inference is available on dockerhub: peresay/suite\n\nAllele-based pipeline\nTo process your AIRR-Seq IGH dataset you first need to pull the docker as such\ndocker pull peresay/suite\nThe you can run the group-pipeline, which infers genotypes using the Allele-based method.\nthere are several parameters that can be modified. For the full list please go to the help guide within the docker.\n# Arguments\nDATA_DIR=~/P1\nFASTA_FILE=/data/P1_I1_S1.fasta\nSAMPLE_NAME=P1_I1_S1\nNPROC=4\n\n# Run pipeline for all avialble parameters\ndocker run peresay/suite -h\n\n# Run pipeline for fasta file in docker image\ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $FASTA_FILE -s $SAMPLE_NAME -t $NPROC\n\nAIRR_FILE=/data/P1_I1_S1.tsv\n# Run pipeline for airr format file in docker image. \ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $AIRR_FILE -s $SAMPLE_NAME -t $NPROC"
+    "text": "Running the docker\nThe processing pipeline for allele-based genotype inference is available on dockerhub: peresay/suite\n\nASC-based pipeline\nTo process your AIRR-Seq IGH dataset you first need to pull the docker as such\ndocker pull peresay/suite\nThe you can run the group-pipeline, which infers genotypes using the ASC-based method.\nthere are several parameters that can be modified. For the full list please go to the help guide within the docker.\n# Arguments\nDATA_DIR=~/P1\nFASTA_FILE=/data/P1_I1_S1.fasta\nSAMPLE_NAME=P1_I1_S1\nNPROC=4\n\n# Run pipeline for all avialble parameters\ndocker run peresay/suite -h\n\n# Run pipeline for fasta file in docker image\ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $FASTA_FILE -s $SAMPLE_NAME -t $NPROC\n\nAIRR_FILE=/data/P1_I1_S1.tsv\n# Run pipeline for airr format file in docker image. \ndocker run -v $DATA_DIR:/data:z peresay/suite \\\n    group-pipeline -f $AIRR_FILE -s $SAMPLE_NAME -t $NPROC \n\n\n\n\nYe, Jian, Ning Ma, Thomas L. Madden, and James M. Ostell. 2013. “IgBLAST: An Immunoglobulin Variable Domain Sequence Analysis Tool.” Nucleic Acids Research 41 (W1): W34–40. https://doi.org/10.1093/nar/gkt382."
   },
   {
     "objectID": "01-G1.html#allele-appearnce",
@@ -998,7 +991,7 @@
     "href": "33-G33.html#allele-appearnce",
     "title": "33  IGHV4-30-4/IGHV4-30-2",
     "section": "33.1 Allele appearnce",
-    "text": "33.1 Allele appearnce\nThe group of IGHV4-30-(IGHVF8-G42_43) includes 0 functional alleles within it.\nFor each allele we counted the number of appearances across the population, any appearance was considered valid."
+    "text": "33.1 Allele appearnce\nThe group of IGHV4-30-(IGHVF8-G42_G43) includes 0 functional alleles within it.\nFor each allele we counted the number of appearances across the population, any appearance was considered valid."
   },
   {
     "objectID": "33-G33.html#group-alignment",
@@ -1054,7 +1047,7 @@
     "href": "35-G35.html#allele-appearnce",
     "title": "35  IGHV4-34",
     "section": "35.1 Allele appearnce",
-    "text": "35.1 Allele appearnce\nThe group of IGHV4-34(IGHVF8-G38_39) includes 0 functional alleles within it.\nFor each allele we counted the number of appearances across the population, any appearance was considered valid."
+    "text": "35.1 Allele appearnce\nThe group of IGHV4-34(IGHVF8-G38_G39) includes 0 functional alleles within it.\nFor each allele we counted the number of appearances across the population, any appearance was considered valid."
   },
   {
     "objectID": "35-G35.html#group-alignment",
@@ -1110,7 +1103,7 @@
     "href": "37-G37.html#allele-appearnce",
     "title": "37  IGHV4-4/IGHV4-59",
     "section": "37.1 Allele appearnce",
-    "text": "37.1 Allele appearnce\nThe group of IGHV4-4/IGHV4-59(IGHVF8-G36_37_40) includes 17 functional alleles within it.\nFor each allele we counted the number of appearances across the population, any appearance was considered valid."
+    "text": "37.1 Allele appearnce\nThe group of IGHV4-4/IGHV4-59(IGHVF8-G36_G37_G40) includes 17 functional alleles within it.\nFor each allele we counted the number of appearances across the population, any appearance was considered valid."
   },
   {
     "objectID": "37-G37.html#group-alignment",

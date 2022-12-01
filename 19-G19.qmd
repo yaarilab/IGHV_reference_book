@@ -69,5 +69,5 @@ The graph below shows the allele-based individual genotype inference for this al
 
 ```{r}
 heatmap_alleles(data_frac, g_group, allele_db)%>%
-  layout(autosize = F, width = 1000, height = 2500)
+  layout(autosize = F)
 ```

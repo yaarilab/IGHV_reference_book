@@ -5,6 +5,7 @@
 ### Run on the server
 ## get the files of the pre-processing. containing the mutation count and the 3' length filter
 # setwd("/work/jenkins/vdjbase_runs_group/naive_final_germline_set")
+# setwd("/work/jenkins/vdjbase_runs_group/naive_extended")
 files <- list.files(".", "genotype_pre_process.tsv.gz", recursive = T, full.names = T)
 
 ## there is a subject column in the files. no need to add another.
@@ -18,7 +19,7 @@ columns_ <- c(
   "j_call",
   "productive",
   "c_call",
-  "upper_range",
+  #"upper_range",
   "mut_v"
 )
 
@@ -40,7 +41,7 @@ dbs <-
 ### filter multiple gene and allele assignments
 
 dbs_filter <- dbs[mut_v <= 3]
-dbs_filter <- dbs_filter[v_germline_end >= upper_range]
+dbs_filter <- dbs_filter[v_germline_end >= 312]
 dbs_filter <- dbs_filter[!grepl("^[.]", sequence_alignment)]
 dbs_filter[, v_gene := alakazam::getGene(v_call,
                                     first = F,
@@ -166,10 +167,10 @@ genotypes_fraction_comb <- rbindlist(tmp)
 
 genotypes_fraction_comb$call <- paste0(genotypes_fraction_comb$v_gene, "*", genotypes_fraction_comb$v_allele)
 genotypes_fraction_comb$v_allele <- as.character(genotypes_fraction_comb$v_allele)
-write.table(genotypes_fraction_comb, file = gzfile("~/data_allele_fraction_for_website.tsv.gz"), 
+write.table(genotypes_fraction_comb, file = gzfile("~/data_allele_fraction_for_website_extended.tsv.gz"), 
             sep = "\t", row.names = F)
 
-alleles_db <- read.delim("data/alleles_db.csv", sep = "\t")
+alleles_db <- data.table::fread("~/Dropbox (BIU)/processpipeline/scripts_docker/alleles_db.csv", data.table = F)
 
 ## collapse imgt genes
 
@@ -186,18 +187,73 @@ alleles_db$func_group <- sapply(alleles_db$func_group, function(x){
   if(x %in% names(merge_group)) merge_group[x] else x
 })
 
+
+
+
+alleles_db <- data.table::fread("~/Dropbox (BIU)/processpipeline/scripts_docker/alleles_db.csv", data.table = F)#read.delim("data/alleles_db_merged.csv", stringsAsFactors = F, sep = "\t")
+alleles_db$func_group_original <- alleles_db$func_group
+# collapse genes that are split into multiple groups
+alleles_db$gene <- sapply(strsplit(alleles_db$imgt_allele,"[*]"),"[[",1)
+
+merge_asc_groups <- function(alleles_db, genes=c("IGHV4-4","IGHV4-59")){
+  groups <- unique(alleles_db$func_group_original[alleles_db$gene %in% genes])
+  groups <- sort(groups)
+  fam <- strsplit(groups[1],"G[0-9]")[[1]][1]
+  groups_merged <- paste0(gsub(fam,"",groups), collapse = "_")
+  groups_merged <- paste0(fam,groups_merged)
+  alleles_db$func_group[alleles_db$func_group_original %in% groups] <- groups_merged
+  return(alleles_db)
+}
+alleles_db <- merge_asc_groups(alleles_db, c("IGHV4-4","IGHV4-59"))
+alleles_db <- merge_asc_groups(alleles_db, "IGHV4-30-4")
+alleles_db <- merge_asc_groups(alleles_db, "IGHV4-34")
+
 write.table(alleles_db, "data/alleles_db_merged.csv", sep = "\t", row.names = F)
 
-data_frac <- data.table::fread("data/data_allele_fraction_for_website.tsv.gz", colClasses = "character")
-imgt_alleles <- setNames(alleles_db$or_allele, alleles_db$new_allele)
+data_frac <- data.table::fread("~/Dropbox (BIU)/IGHV_reference_book/data/data_allele_fraction_for_website_extended.tsv.gz", colClasses = "character")
+imgt_alleles <- setNames(alleles_db$imgt_allele, alleles_db$new_allele)
 data_frac$imgt_call <- imgt_alleles[data_frac$call]
 
-data_frac$group <- sapply(data_frac$v_gene, function(x){
-  if(x %in% names(merge_group)) merge_group[x] else x
+## add novel alleles
+
+missing_calls <- which(is.na(data_frac$imgt_call))
+data_frac[missing_calls]$imgt_call <- sapply(missing_calls, function(i){
+  gene <- data_frac$v_gene[i]
+  allele <- data_frac$v_allele[i]
+  base <- strsplit(allele, "_")[[1]][1]
+  add <- gsub(base, "", allele)
+  iuis_call <- imgt_alleles[paste0(gene,"*",base)]
+  paste0(iuis_call,add)
 })
 
+
+data_frac$func_group_original <- data_frac$v_gene
+data_frac$group <- data_frac$v_gene
+data_frac$gene <- sapply(strsplit(data_frac$imgt_call,"[*]"),"[[",1)
+
+
+merge_asc_groups2 <- function(alleles_db, data_frac, genes=c("IGHV4-4","IGHV4-59")){
+  groups <- unique(alleles_db$func_group_original[alleles_db$gene %in% genes])
+  groups <- sort(groups)
+  fam <- strsplit(groups[1],"G[0-9]")[[1]][1]
+  groups_merged <- paste0(gsub(fam,"",groups), collapse = "_")
+  groups_merged <- paste0(fam,groups_merged)
+  data_frac$group[data_frac$func_group_original %in% groups] <- groups_merged
+  return(data_frac)
+}
+
+data_frac <- merge_asc_groups2(alleles_db, data_frac, genes = c("IGHV4-4","IGHV4-59"))
+data_frac <- merge_asc_groups2(alleles_db, data_frac, "IGHV4-30-4")
+data_frac <- merge_asc_groups2(alleles_db, data_frac, "IGHV4-34")
+
+
+
+# data_frac$group <- sapply(data_frac$v_gene, function(x){
+#   if(x %in% names(merge_group)) merge_group[x] else x
+# })
+
 data_frac <- setDT(data_frac)
-save(data_frac, file = "data/data_frac.rda")
+save(data_frac, file = "~/Dropbox (BIU)/IGHV_reference_book/data/data_frac.rda")
 
 
 

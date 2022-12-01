@@ -6,9 +6,10 @@ execute:
   warning: false
   message: false
 comments: false
+bibliography: references.bib
 ---
 
-# Annotate your own dataset {.unnumbered}
+# Processing AIRR-seq data with the ASC-pipeline {.unnumbered}
 
 Annotating and genotyping with the allele-based method can be done using a docker container. The docker is based on the [immcantation docker](https://immcantation.readthedocs.io/en/stable/) and holds the pipeline for processing your IGH repertoire sequences.
 
@@ -16,10 +17,10 @@ Annotating and genotyping with the allele-based method can be done using a docke
 
 The pipeline is assembled from several steps as described below:
 
-1.  Igblast alignment against the allele clusters reference set
+1.  Igblast [@IgBLAST] alignment against the allele similarity clusters reference set
 
-    -   The IGH allele cluster reference set includes functional allele under the modified names to represent the new clusters.
-    -   Each amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found [here for S1](https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_full_length_no_gap_nos.fasta), and [here for S2](https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_biomed_length_no_gap_nos.fasta)
+    -   The IGH allele similarity cluster reference set includes functional allele under the modified names to represent the new clusters.
+    -   Each amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found [here for S1](https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_full_length_no_gap_nos_extended.fasta), and [here for S2](https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_biomed_length_no_gap_nos.fasta)
 
 2.  Inferring novel alleles using the [TIgGER package](https://tigger.readthedocs.io/) and re-aligning the sequences against the additional alleles.
 
@@ -31,7 +32,7 @@ The pipeline is assembled from several steps as described below:
 
 ## Run output structure
 
-The output of the pipeline is a nested folder by the name of the sample with the intermidate files of each step and the final analysis files.
+The output of the pipeline is a nested folder by the name of the sample with the intermediate files of each step and the final analysis files.
 
 #### Breakdown of the files and folders
 
@@ -57,7 +58,7 @@ The output of the pipeline is a nested folder by the name of the sample with the
 
 The processing pipeline for allele-based genotype inference is available on dockerhub: [peresay/suite](https://hub.docker.com/repository/docker/peresay/suite)
 
-### Allele-based pipeline
+### ASC-based pipeline
 
 To process your AIRR-Seq IGH dataset you first need to pull the docker as such
 
@@ -65,7 +66,7 @@ To process your AIRR-Seq IGH dataset you first need to pull the docker as such
 docker pull peresay/suite
 ```
 
-The you can run the group-pipeline, which infers genotypes using the Allele-based method.
+The you can run the group-pipeline, which infers genotypes using the ASC-based method.
 
 there are several parameters that can be modified. For the full list please go to the help guide within the docker.
 

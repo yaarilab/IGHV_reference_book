@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reference Book - Beta version - Annotate your own dataset</title>
+<title>Reference Book - Beta version - Processing AIRR-seq data with the ASC-pipeline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,6 +78,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -130,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Annotate your own dataset</h1>
+      <h1 class="quarto-secondary-nav-title">Processing AIRR-seq data with the ASC-pipeline</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -192,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./alleles_groups.html" class="sidebar-item-text sidebar-link">Allele clusters</a>
+  <a href="./alleles_groups.html" class="sidebar-item-text sidebar-link">Allele Similarity Cluster (ASC)</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -202,17 +221,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./allele_based_genotype.html" class="sidebar-item-text sidebar-link">Allele-based genotype</a>
+  <a href="./allele_based_genotype.html" class="sidebar-item-text sidebar-link">ASC-based genotype</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cluster_docker.html" class="sidebar-item-text sidebar-link active">Annotate your own dataset</a>
+  <a href="./cluster_docker.html" class="sidebar-item-text sidebar-link active">Processing AIRR-seq data with the ASC-pipeline</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Allele Clusters</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Allele Similarity Clusters</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -443,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#run-output-structure" id="toc-run-output-structure" class="nav-link" data-scroll-target="#run-output-structure">Run output structure</a></li>
   <li><a href="#running-the-docker" id="toc-running-the-docker" class="nav-link" data-scroll-target="#running-the-docker">Running the docker</a>
   <ul class="collapse">
-  <li><a href="#allele-based-pipeline" id="toc-allele-based-pipeline" class="nav-link" data-scroll-target="#allele-based-pipeline">Allele-based pipeline</a></li>
+  <li><a href="#asc-based-pipeline" id="toc-asc-based-pipeline" class="nav-link" data-scroll-target="#asc-based-pipeline">ASC-based pipeline</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/yaarilab/IGHV_reference_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -453,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Annotate your own dataset</h1>
+<h1 class="title d-none d-lg-block">Processing AIRR-seq data with the ASC-pipeline</h1>
 </div>
 
 
@@ -472,10 +491,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="igh-repertoire-processing-pipeline">IGH repertoire processing pipeline</h2>
 <p>The pipeline is assembled from several steps as described below:</p>
 <ol type="1">
-<li><p>Igblast alignment against the allele clusters reference set</p>
+<li><p>Igblast <span class="citation" data-cites="IgBLAST">(<a href="#ref-IgBLAST" role="doc-biblioref">Ye et al. 2013</a>)</span> alignment against the allele similarity clusters reference set</p>
 <ul>
-<li>The IGH allele cluster reference set includes functional allele under the modified names to represent the new clusters.</li>
-<li>Each amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found <a href="https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_full_length_no_gap_nos.fasta">here for S1</a>, and <a href="https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_biomed_length_no_gap_nos.fasta">here for S2</a></li>
+<li>The IGH allele similarity cluster reference set includes functional allele under the modified names to represent the new clusters.</li>
+<li>Each amplicon length S1 (full length of V region) and S2 (BIOMED-2 primer like V region length) has its own reference set. The current reference set version can be found <a href="https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_full_length_no_gap_nos_extended.fasta">here for S1</a>, and <a href="https://bitbucket.org/yaarilab/processpipeline/src/master/igblast_reference/humanIGH/IGHV_naive_biomed_length_no_gap_nos.fasta">here for S2</a></li>
 </ul></li>
 <li><p>Inferring novel alleles using the <a href="https://tigger.readthedocs.io/">TIgGER package</a> and re-aligning the sequences against the additional alleles.</p></li>
 <li><p>In case the repertoire is not naive, a clonal inference using <a href="https://changeo.readthedocs.io/">Change-O</a> is preformed. A single clonal representative with the least number of mutation is chosen.</p>
@@ -487,7 +506,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="run-output-structure" class="level2">
 <h2 class="anchored" data-anchor-id="run-output-structure">Run output structure</h2>
-<p>The output of the pipeline is a nested folder by the name of the sample with the intermidate files of each step and the final analysis files.</p>
+<p>The output of the pipeline is a nested folder by the name of the sample with the intermediate files of each step and the final analysis files.</p>
 <section id="breakdown-of-the-files-and-folders" class="level4">
 <h4 class="anchored" data-anchor-id="breakdown-of-the-files-and-folders">Breakdown of the files and folders</h4>
 <ul>
@@ -543,11 +562,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="running-the-docker" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-docker">Running the docker</h2>
 <p>The processing pipeline for allele-based genotype inference is available on dockerhub: <a href="https://hub.docker.com/repository/docker/peresay/suite">peresay/suite</a></p>
-<section id="allele-based-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="allele-based-pipeline">Allele-based pipeline</h3>
+<section id="asc-based-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="asc-based-pipeline">ASC-based pipeline</h3>
 <p>To process your AIRR-Seq IGH dataset you first need to pull the docker as such</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull peresay/suite</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The you can run the group-pipeline, which infers genotypes using the Allele-based method.</p>
+<p>The you can run the group-pipeline, which infers genotypes using the ASC-based method.</p>
 <p>there are several parameters that can be modified. For the full list please go to the help guide within the docker.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Arguments</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">DATA_DIR</span><span class="op">=</span>~/P1</span>
@@ -568,6 +587,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    group-pipeline <span class="at">-f</span> <span class="va">$AIRR_FILE</span> <span class="at">-s</span> <span class="va">$SAMPLE_NAME</span> <span class="at">-t</span> <span class="va">$NPROC</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-IgBLAST" class="csl-entry" role="doc-biblioentry">
+Ye, Jian, Ning Ma, Thomas L. Madden, and James M. Ostell. 2013. <span>“IgBLAST: An Immunoglobulin Variable Domain Sequence Analysis Tool.”</span> <em>Nucleic Acids Research</em> 41 (W1): W34–40. <a href="https://doi.org/10.1093/nar/gkt382">https://doi.org/10.1093/nar/gkt382</a>.
+</div>
+</div>
 </section>
 </section>
 
@@ -672,7 +696,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./allele_based_genotype.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Allele-based genotype</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ASC-based genotype</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

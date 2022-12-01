@@ -1,13 +1,14 @@
-pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales',
-               'ggplot2', 'rdrop2', 'shiny', 'BiocManager', 'DECIPHER',
-               'dendextend', 'data.table', 'Biostrings', 'alakazam', "unikn", 
+pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales', 'data.table',
+               'ggplot2', 'rdrop2', 'shiny', 'BiocManager', 'DECIPHER', 'ComplexUpset',
+               'dendextend', 'data.table', 'Biostrings', 'alakazam', "unikn", 'ggupset',
                'plotly', "jcolors", 'ggdendro', "RColorBrewer","kmer","heatmaply", install = F)
 
 load("data/data_frac.rda")
 data <- data_frac
 allele_db <- read.delim("data/alleles_db_merged.csv", stringsAsFactors = F, sep = "\t")
+allele_db$or_allele <- allele_db$imgt_allele
 absolute_thresholds_dict <- read.delim("data/alleles_db_merged.csv", stringsAsFactors = F, sep = "\t")
-
+absolute_thresholds_dict$or_allele <- absolute_thresholds_dict$imgt_allele
 
 absolute_thresholds_dict <- sapply(unique(absolute_thresholds_dict$func_group), function(x){
   tmp <- absolute_thresholds_dict[absolute_thresholds_dict$func_group==x,]
@@ -512,136 +513,193 @@ heatmap_alleles <-
     
     data_cluster <- data_[as.numeric(freq2) >= absolute_thresh,]
     
-    n_alleles <- data_cluster$imgt_call %>% unique() %>% length()#allele_db %>% filter(func_group == g_group) %>% pull(or_allele) %>% unique() %>% length()
-    alleles <- data_cluster$imgt_call %>% unique()#allele_db %>% filter(func_group == g_group) %>% pull(or_allele) %>% unique()
-    subjects <- unique(data_cluster$subject)
-    allele_show <-
-      matrix(
-        0,
-        nrow = length(subjects),
-        ncol = n_alleles,
-        dimnames = list(subjects, alleles)
-      )
+    # n_alleles <- data_cluster$imgt_call %>% unique() %>% length()#allele_db %>% filter(func_group == g_group) %>% pull(or_allele) %>% unique() %>% length()
+    # alleles <- data_cluster$imgt_call %>% unique()#allele_db %>% filter(func_group == g_group) %>% pull(or_allele) %>% unique()
+    # subjects <- unique(data_cluster$subject)
+    # allele_show <-
+    #   matrix(
+    #     0,
+    #     nrow = length(subjects),
+    #     ncol = n_alleles,
+    #     dimnames = list(subjects, alleles)
+    #   )
+    # 
+    # for (samp in subjects) {
+    #   tmp <- data_cluster[subject == samp]
+    #   alleles <- unique(tmp$imgt_call)
+    #   allele_show[samp, alleles] <- 1
+    # }
+    # 
     
-    for (samp in subjects) {
-      tmp <- data_cluster[subject == samp]
-      alleles <- unique(tmp$imgt_call)
-      allele_show[samp, alleles] <- 1
-    }
+    # ggupset version for sanity
+    # data_cluster %>%
+    #   group_by(subject) %>%
+    #   dplyr::summarise(call = list(unique(imgt_call)),
+    #                    frequency = sum(as.numeric(freq2), na.rm = T)) %>%
+    #   ggplot(aes(x=call, y = frequency)) +
+    #   smplot::sm_boxplot() +
+    #   scale_x_upset(n_intersections = 20)
+    # 
     
-    p <- heatmaply(
-      allele_show,
-      dendrogram = ifelse(n_alleles>1,"row","none"),
-      xlab = "",
-      ylab = "",
-      main = "",
-      colors = c("white", "black"),
-      grid_color = "gray",
-      grid_width = 0.0001,
-      titleX = FALSE,
-      hide_colorbar = TRUE,
-      branches_lwd = 0.5,
-      fontsize_row = 12,
-      fontsize_col = 12,
-      label_names = c("Subject", "Allele", "Found"),
-      labCol = colnames(allele_show),
-      labRow = rownames(allele_show),
-      heatmap_layers = theme(axis.line = element_blank())
+    data_upset <- data_cluster %>%
+      select(subject, imgt_call, freq2) %>%
+      group_by(subject) %>%
+      dplyr::mutate(frequency = sum(as.numeric(freq2), na.rm = T),
+                    val = 1, 
+                    text = paste("</br>Subject: ", subject,
+                                 "</br>Alleles: ", paste0(sort(unique(imgt_call)), collapse = ","),
+                                 "</br>Frequency: ", unique(frequency)),
+                    text2 = paste("</br>Alleles: ", paste0(sort(unique(imgt_call)), collapse = ","))) %>%
+      select(-freq2) %>%
+      pivot_wider(names_from = imgt_call, 
+                  values_from = val, 
+                  values_fill = list(val = 0))
+    
+    missing_alleles <- names(threhsolds)[!names(threhsolds) %in% colnames(data_upset[,5:ncol(data_upset)])]
+    
+    data_upset[,missing_alleles] <- 0
+    
+    p_upset <- upset(
+      data_upset,
+      unique(names(threhsolds)),
+      annotations = list(
+        'Frequency'=ggplot(mapping = aes(x=intersection, y = frequency)) +
+          smplot::sm_boxplot(point_size = 1, outlier_label = F) + upset_themes$default
+      ),
+      width_ratio=0.1, encode_sets = F
     )
     
-    hline <- function(y = 0,
-                      color = "red",
-                      x0 = 0,
-                      x1 = 1) {
-      list(
-        type = "line",
-        x0 = x0,
-        x1 = x1,
-        xref = "xaxis",
-        y0 = y,
-        y1 = y,
-        line = list(color = color, dash = "dot"),
-        text = formatC(as.numeric(y),format = "e")
-      )
-    }
     
+    p1 <- ggplotly(p_upset[[2]]+ aes(text = text), tooltip = "text")
+    p2 <- ggplotly(p_upset[[4]] + aes(text = text2), tooltip = "text")
+    p3 <- ggplotly(p_upset[[5]], tooltip = "text")
+    p_interaction <- ggplotly(p_upset, tooltip = "x")
     
-    data_$v_allele_axis2 <-
-      factor(data_$imgt_call, unique(data_$imgt_call))
-    data_$v_allele_axis3 <-
-      as.numeric(data_$v_allele_axis2)
+    sub_p1 <- subplot(hide_legend(p1), # boxplot and point - decrease size of points and remove legend
+                      p2, 
+                      hide_legend(p_interaction), 
+                      nrows = 3, margin = 0.0007)
+    sub_p2 <- subplot(plotly_empty(), 
+                      plotly_empty(), 
+                      p3, 
+                      nrows = 3, margin = 0.0007)
+    sub_p3 <- subplot(sub_p2, sub_p1, nrows = 1, margin = 0.07)
     
-    data_ <- data_ %>% dplyr::arrange(desc(as.numeric(freq2))) %>%
-      dplyr::group_by(subject) %>% 
-      dplyr::mutate(zygousity_state = n()) %>% 
-      arrange(subject) %>% rowwise() %>% 
-      mutate(
-        pass = as.numeric(freq2)>=absolute_thresh,
-        freq3 = formatC(as.numeric(freq2),format = "e"))
+    return(sub_p3)
     
-    ticktext <- levels(data_$v_allele_axis2)
-    tickvals <- 1:length(ticktext)
-    
-    plotly2 <-
-      data_ %>%
-      highlight_key(., ~ subject) %>%
-      plotly::plot_ly() %>%
-      plotly::add_trace(
-        type = "scatter",
-        x = ~ jitter(v_allele_axis3),
-        y = ~ as.numeric(freq2),
-        symbol = ~ pass,
-        mode = 'markers',
-        color = ~ as.factor(project),
-        showlegend = TRUE,
-        opacity = 0.9,
-        hoverinfo = 'text',
-        hovertext = paste0("Allele fraction: ",data_$freq3)
-        #legendgroup = ~ project
-      ) %>%
-      plotly::add_trace(
-        x = ~ v_allele_axis3,
-        y = ~ as.numeric(freq2),
-        type = "box",
-        hoverinfo = "none",
-        fillcolor = "transparent",
-        showlegend = FALSE
-      ) %>%
-      plotly::layout(
-        hovermode = 'closest',
-        shapes = lapply(1:length(ticktext), function(ia) {
-          a = ticktext[ia]
-          xx = tickvals
-          hline(
-            ifelse(is.na(as.numeric(threhsolds[a])), 0.0001, as.numeric(threhsolds[a])),
-            x0 = xx[ia] -
-              0.25,
-            x1 = xx[ia] + 0.25,
-            color = "red"
-          )
-        }
-        ),
-        legend = list(orientation = "h", x = 0, y = 1.1),
-        xaxis = list(
-          title = paste0("Alleles"),
-          tickfont = list(size = 16, color = "rgba(77,77,77,1)"),
-          tickangle = -90,
-          range = c(.5, n_alleles + 0.5),
-          autotick = F,
-          tickmode = "array",
-          tickvals = tickvals,
-          ticktext = ticktext
-        ),
-        yaxis = list(title = "Rep.\nnormalization", range = c(0, NULL))
-        #,range = c(0, 0.5))
-      ) %>%
-      plotly::highlight(
-        on = "plotly_click",
-        opacityDim = 0.3,
-        off = "plotly_doubleclick",
-        selected = attrs_selected(showlegend = T),
-        persistent = F
-      )
+    # p <- heatmaply(
+    #   allele_show,
+    #   dendrogram = ifelse(n_alleles>1,"row","none"),
+    #   xlab = "",
+    #   ylab = "",
+    #   main = "",
+    #   colors = c("white", "black"),
+    #   grid_color = "gray",
+    #   grid_width = 0.0001,
+    #   titleX = FALSE,
+    #   hide_colorbar = TRUE,
+    #   branches_lwd = 0.5,
+    #   fontsize_row = 12,
+    #   fontsize_col = 12,
+    #   label_names = c("Subject", "Allele", "Found"),
+    #   labCol = colnames(allele_show),
+    #   labRow = rownames(allele_show),
+    #   heatmap_layers = theme(axis.line = element_blank())
+    # )
+    # 
+    # hline <- function(y = 0,
+    #                   color = "red",
+    #                   x0 = 0,
+    #                   x1 = 1) {
+    #   list(
+    #     type = "line",
+    #     x0 = x0,
+    #     x1 = x1,
+    #     xref = "xaxis",
+    #     y0 = y,
+    #     y1 = y,
+    #     line = list(color = color, dash = "dot"),
+    #     text = formatC(as.numeric(y),format = "e")
+    #   )
+    # }
+    # 
+    # 
+    # data_$v_allele_axis2 <-
+    #   factor(data_$imgt_call, unique(data_$imgt_call))
+    # data_$v_allele_axis3 <-
+    #   as.numeric(data_$v_allele_axis2)
+    # 
+    # data_ <- data_ %>% dplyr::arrange(desc(as.numeric(freq2))) %>%
+    #   dplyr::group_by(subject) %>% 
+    #   dplyr::mutate(zygousity_state = n()) %>% 
+    #   arrange(subject) %>% rowwise() %>% 
+    #   mutate(
+    #     pass = as.numeric(freq2)>=absolute_thresh,
+    #     freq3 = formatC(as.numeric(freq2),format = "e"))
+    # 
+    # ticktext <- levels(data_$v_allele_axis2)
+    # tickvals <- 1:length(ticktext)
+    # 
+    # plotly2 <-
+    #   data_ %>%
+    #   highlight_key(., ~ subject) %>%
+    #   plotly::plot_ly() %>%
+    #   plotly::add_trace(
+    #     type = "scatter",
+    #     x = ~ jitter(v_allele_axis3),
+    #     y = ~ as.numeric(freq2),
+    #     symbol = ~ pass,
+    #     mode = 'markers',
+    #     color = ~ as.factor(project),
+    #     showlegend = TRUE,
+    #     opacity = 0.9,
+    #     hoverinfo = 'text',
+    #     hovertext = paste0("Allele fraction: ",data_$freq3)
+    #     #legendgroup = ~ project
+    #   ) %>%
+    #   plotly::add_trace(
+    #     x = ~ v_allele_axis3,
+    #     y = ~ as.numeric(freq2),
+    #     type = "box",
+    #     hoverinfo = "none",
+    #     fillcolor = "transparent",
+    #     showlegend = FALSE
+    #   ) %>%
+    #   plotly::layout(
+    #     hovermode = 'closest',
+    #     shapes = lapply(1:length(ticktext), function(ia) {
+    #       a = ticktext[ia]
+    #       xx = tickvals
+    #       hline(
+    #         ifelse(is.na(as.numeric(threhsolds[a])), 0.0001, as.numeric(threhsolds[a])),
+    #         x0 = xx[ia] -
+    #           0.25,
+    #         x1 = xx[ia] + 0.25,
+    #         color = "red"
+    #       )
+    #     }
+    #     ),
+    #     legend = list(orientation = "h", x = 0, y = 1.1),
+    #     xaxis = list(
+    #       title = paste0("Alleles"),
+    #       tickfont = list(size = 16, color = "rgba(77,77,77,1)"),
+    #       tickangle = -90,
+    #       range = c(.5, n_alleles + 0.5),
+    #       autotick = F,
+    #       tickmode = "array",
+    #       tickvals = tickvals,
+    #       ticktext = ticktext
+    #     ),
+    #     yaxis = list(title = "Rep.\nnormalization", range = c(0, NULL))
+    #     #,range = c(0, 0.5))
+    #   ) %>%
+    #   plotly::highlight(
+    #     on = "plotly_click",
+    #     opacityDim = 0.3,
+    #     off = "plotly_doubleclick",
+    #     selected = attrs_selected(showlegend = T),
+    #     persistent = F
+    #   )
     # %>% add_annotations(x = tickvals-0.2, y = 0.001, 
     #                             text = as.character(threhsolds), 
     #                             textfont = list(color = '#000000'))
@@ -649,19 +707,19 @@ heatmap_alleles <-
     #   if(x$marker$line$color=="rgba(0,0,0,1)") x$marker = list(opacity = 0)
     #   return(x)
     # })
-    subplot(
-      subplot(
-        plotly2,
-        plotly_empty(),
-        widths = c(0.82, 0.18),
-        which_layout = 1
-      ),
-      plotly_empty(),
-      p, heights = c(1/5, 1/5, 3/5),
-      nrows = 3,
-      margin = 0.04,
-      which_layout = 1
-    )
+    # subplot(
+    #   subplot(
+    #     plotly2,
+    #     plotly_empty(),
+    #     widths = c(0.82, 0.18),
+    #     which_layout = 1
+    #   ),
+    #   plotly_empty(),
+    #   p, heights = c(1/5, 1/5, 3/5),
+    #   nrows = 3,
+    #   margin = 0.04,
+    #   which_layout = 1
+    # )
     
     #return(list(plotly2, p))
   }
