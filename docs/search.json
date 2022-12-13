@@ -58,14 +58,14 @@
   {
     "objectID": "allele_based_genotype.html",
     "href": "allele_based_genotype.html",
-    "title": "1  ASC-based genotype {.unnumbered}",
+    "title": "1  ASC-based genotype",
     "section": "",
     "text": "Genotyping an Individual’s repertoire is becoming a common practice in down stream analysis. There are several tools nowadays to achieve such inference, namely TIgGER(Gadala-Maria et al. 2015) and IgDiscover (Corcoran et al. 2016). Though the methods are doing a fine job at inferring the genotype in high accuracy, they often neglect to detect lowly frequent alleles. The set of restriction the methods operates under enhance the specificity over the sensitivity.\nAside from low frequent alleles, another limitation that can hinder genotype inference is sequence multiple assignment. Each sequence in the repertoire is assigned its inferred V(D)J alleles for each of the segments. The assignments can be influenced by several factors, such as sequencing errors, somatic hyper mutations, amplicon length, and the initial reference set. This confounding factors can results in assigning more than a single allele per sequence segment. This multiple assignment has a downstream affect on the genotype inference. Each tool tries to deal with this effect in various ways.\nIn this reference book we observed the allele distribution across the population and derived threshold for determining genotype inference."
   },
   {
     "objectID": "allele_based_genotype.html#sec-threshold",
     "href": "allele_based_genotype.html#sec-threshold",
-    "title": "1  ASC-based genotype {.unnumbered}",
+    "title": "1  ASC-based genotype",
     "section": "1.1 Allele’s thresholds",
     "text": "1.1 Allele’s thresholds\nThe following thresholds were used for determining presence of an allele in the genotype.\n\n\n\n\n\n\n\n\n\n\n\nCorcoran, Martin M., Ganesh E. Phad, Néstor Vázquez Bernat, Christiane Stahl-Hennig, Noriyuki Sumida, Mats A. A. Persson, Marcel Martin, and Gunilla B. Karlsson Hedestam. 2016. “Production of Individualized v Gene Databases Reveals High Levels of Immunoglobulin Genetic Diversity.” Nature Communications 7 (1): 13642. https://doi.org/10.1038/ncomms13642.\n\n\nGadala-Maria, Daniel, Gur Yaari, Mohamed Uduman, and Steven H. Kleinstein. 2015. “Automated Analysis of High-Throughput b-Cell Sequencing Data Reveals a High Frequency of Novel Immunoglobulin v Gene Segment Alleles.” Proceedings of the National Academy of Sciences 112 (8): E862–70. https://doi.org/10.1073/pnas.1417683112."
   },
@@ -74,7 +74,7 @@
     "href": "piglet_package.html",
     "title": "PIgLET - R pakcage",
     "section": "",
-    "text": "Program for Ig clusters R package (PIgLET) is a suite of computational tools that improves genotype inference and downstream AIRR-seq data analysis. The package as two main tools. The first is Allele Clusters, this tool is designed to reduce the ambiguity within the IGHV alleles. The ambiguity is caused by duplicated or similar alleles which are shared among different genes. The second tool is an allele based genotype, that determined the presence of an allele based on a threshold derived from a naive population.\n(figures/piglet_logo.svg)"
+    "text": "Program for Ig clusters R package (PIgLET) is a suite of computational tools that improves genotype inference and downstream AIRR-seq data analysis. The package as two main tools. The first is Allele Clusters, this tool is designed to reduce the ambiguity within the IGHV alleles. The ambiguity is caused by duplicated or similar alleles which are shared among different genes. The second tool is an allele based genotype, that determined the presence of an allele based on a threshold derived from a naive population."
   },
   {
     "objectID": "piglet_package.html#installing-piglet",

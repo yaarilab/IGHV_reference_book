@@ -222,7 +222,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./allele_based_genotype.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ASC-based genotype {.unnumbered}</span></a>
+  <a href="./allele_based_genotype.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ASC-based genotype</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -502,7 +502,7 @@ div.csl-indent {
 
 </div>
 <p>Program for Ig clusters R package (PIgLET) is a suite of computational tools that improves genotype inference and downstream AIRR-seq data analysis. The package as two main tools. The first is Allele Clusters, this tool is designed to reduce the ambiguity within the IGHV alleles. The ambiguity is caused by duplicated or similar alleles which are shared among different genes. The second tool is an allele based genotype, that determined the presence of an allele based on a threshold derived from a naive population.</p>
-<p>(figures/piglet_logo.svg)</p>
+<p><img src="figures/piglet_logo.svg" class="img-fluid"></p>
 <section id="installing-piglet" class="level2">
 <h2 class="anchored" data-anchor-id="installing-piglet">Installing PIgLET</h2>
 <p>PIgLET is available for installation from the development version.</p>
@@ -661,7 +661,7 @@ div.csl-indent {
 <section id="artificial-framework-1-reference-set" class="level3">
 <h3 class="anchored" data-anchor-id="artificial-framework-1-reference-set">Artificial framework 1 reference set</h3>
 <p>As described in <a href="alleles_groups.html#sec-amplicon_Length"><span>Section&nbsp;1</span></a>, not all repertoires data available covers the entire V region. Hence, a modified reference set for the sequenced region can help us further understand the results we can obtain from certain library protocols.</p>
-<p>Hence, we created the function <code>artificialFRW1Germline</code>, to mimic the seen coding region of targeted framework 1 (FRW1) primers for a given reference set. The primers were obtained from BIOMED-2 protocol <span class="citation" data-cites="van2003design">(<a href="#ref-van2003design" role="doc-biblioref">Van Dongen et al. 2003</a>)</span>.</p>
+<p>Hence, we created the function <code>artificialFRW1Germline</code>, to mimic the seen coding region of targeted framework 1 (FRW1) primers for a given reference set. The primers were obtained from BIOMED-2 protocol <span class="citation" data-cites="van2003design">(<a href="preface.html#ref-van2003design" role="doc-biblioref">Van Dongen et al. 2003</a>)</span>.</p>
 <p>Essentially the function matches the primer to each of the germline set sequences and either mask or trim the region. The returned object is a character vector with the named sequence in the desire length (Trimmed/Masked).</p>
 <p>To demonstrate the use of the function, we can use the cleaned germline set from above (<a href="#lst-germlineset">Listing&nbsp;<span>1</span></a>). In this case we will mask the FRW1 region, this will return the sequences with the Ns instead of DNA nucleotide. The function output a log of the process, this output can be repressed using the <code>quite=TRUE</code> flag.</p>
 <div class="cell">
@@ -770,7 +770,7 @@ VH1-FR1:53,VH2-FR1:25,VH3-FR1:122,VH4-FR1:69,VH5-FR1:10,VH6-FR1:3</code></pre>
 <li>Setting the flag <code>single_assignment=F</code>. In this case the function treats cases of multiple allele call assignment as belonging to all groups.</li>
 </ul></li>
 </ul>
-<p>Below is a demonstration of inferring the genotype for an example dataset taken from TIgGER<span class="citation" data-cites="TIgGER">(<a href="#ref-TIgGER" role="doc-biblioref">Gadala-Maria et al. 2015</a>)</span> package.</p>
+<p>Below is a demonstration of inferring the genotype for an example dataset taken from TIgGER<span class="citation" data-cites="TIgGER">(<a href="preface.html#ref-TIgGER" role="doc-biblioref">Gadala-Maria et al. 2015</a>)</span> package.</p>
 <p>The data is b cell repertoire data from individual (PGP1) in AIRR format. The records were annotated with by IMGT/HighV-QUEST.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading TIgGER AIRR-seq b cell data</span></span>
@@ -910,7 +910,7 @@ VH1-FR1:53,VH2-FR1:25,VH3-FR1:122,VH4-FR1:69,VH5-FR1:10,VH6-FR1:3</code></pre>
 </section>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
 <div id="ref-TIgGER" class="csl-entry" role="doc-biblioentry">
 Gadala-Maria, Daniel, Gur Yaari, Mohamed Uduman, and Steven H. Kleinstein. 2015. <span>“Automated Analysis of High-Throughput b-Cell Sequencing Data Reveals a High Frequency of Novel Immunoglobulin v Gene Segment Alleles.”</span> <em>Proceedings of the National Academy of Sciences</em> 112 (8): E862–70. <a href="https://doi.org/10.1073/pnas.1417683112">https://doi.org/10.1073/pnas.1417683112</a>.
 </div>
@@ -1024,7 +1024,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./allele_based_genotype.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ASC-based genotype {.unnumbered}</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ASC-based genotype</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

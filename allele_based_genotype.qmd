@@ -9,7 +9,7 @@ comments: false
 bibliography: references.bib
 ---
 
-# ASC-based genotype {.unnumbered} {#sec-genotype}
+# ASC-based genotype {#sec-genotype}
 
 Genotyping an Individual's repertoire is becoming a common practice in down stream analysis. There are several tools nowadays to achieve such inference, namely TIgGER[@TIgGER] and IgDiscover [@IgDIscover]. Though the methods are doing a fine job at inferring the genotype in high accuracy, they often neglect to detect lowly frequent alleles. The set of restriction the methods operates under enhance the specificity over the sensitivity.
 
