@@ -9,7 +9,7 @@ comments: false
 bibliography: references.bib
 ---
 
-# ASC-based genotype {.unnumbered}
+# ASC-based genotype {.unnumbered} {#sec-genotype}
 
 Genotyping an Individual's repertoire is becoming a common practice in down stream analysis. There are several tools nowadays to achieve such inference, namely TIgGER[@TIgGER] and IgDiscover [@IgDIscover]. Though the methods are doing a fine job at inferring the genotype in high accuracy, they often neglect to detect lowly frequent alleles. The set of restriction the methods operates under enhance the specificity over the sensitivity.
 
@@ -17,7 +17,7 @@ Aside from low frequent alleles, another limitation that can hinder genotype inf
 
 In this reference book we observed the allele distribution across the population and derived threshold for determining genotype inference.
 
-## Allele's thresholds
+## Allele's thresholds {#sec-threshold}
 
 The following thresholds were used for determining presence of an allele in the genotype.
 
@@ -34,4 +34,3 @@ DT::datatable(data.table::fread("./data/alleles_db.csv",
               options = list(lengthMenu = c(5, 30, 50), 
                              pageLength = 5))
 ```
-

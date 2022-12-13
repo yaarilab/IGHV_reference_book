@@ -19,13 +19,14 @@ book:
   sharing: [twitter, facebook, linkedin]
   collapse-level: 1
   page-navigation: true
-  page-footer: "© Copyright 2022 of YaariLab (gur.yaari@biu.ac.il), website licensed under the [Apache License, v2.0] (https://www.apache.org/licenses/LICENSE-2.0)"
+  page-footer: "© Copyright 2022 of YaariLab (gur.yaari@biu.ac.il), website licensed under the [CC BY-NC-ND, 4.0] (https://creativecommons.org/licenses/by-nc-nd/4.0/)"
   chapters:
     - index.qmd
     - preface.qmd
     - alleles_groups.qmd
     - datasets.qmd
     - allele_based_genotype.qmd
+    - piglet_package.qmd
     - cluster_docker.qmd
     - part: "Allele Similarity Clusters"
       chapters:

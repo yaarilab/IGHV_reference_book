@@ -53,7 +53,7 @@ The term Allele similarity clusters (ASC), defines alleles that have a degree of
 
 This IGH reference book uses the current IMGT IGHV reference available. We selected functional alleles and trimmed the sequences up to position 318. We discarded alleles which are truncated in their 5' region as well as those that are less then 318 nucleotides.
 
-## Library amplicon length
+## Library amplicon length {#sec-amplicon_Length}
 
 Even though, we wish that all repertoires data available will cover the entire V region this is not always the case. Hence, we adapted our protocols to fit partial V coverage libraries. For the beginning we chose two library amplicon length, BIOMED-2 primers and Adaptive region coverage. The table below summaries the naming for each of the amplicon lengths and see @fig-coverage for coverage illustration:
 
@@ -80,16 +80,22 @@ To illustrate the relation between the International Union of Immunological Soci
 | S2        |        | 44    | 247     |
 | S3        |        | 11    | 130     |
 
-<!-- ## Creating ASC based on reference set -->
+## Creating ASC based on reference set
 
-<!-- The application below demonstrates the creation of the ASCs based on a given reference set. Either use the example human IGH reference set within the app, or upload a reference set of your own. The application includes four tabs; -->
-<!-- 1. The ASCs allele table, the columns are described below: -->
-<!--   - original_allele - the IUIS given name -->
-<!--   -  -->
+The application below demonstrates the creation of the ASCs based on a given reference set. Either use the example human IGH reference set within the app, or upload a reference set of your own. The application includes four tabs;
+1. The ASCs allele table, the columns are described below:
+- `imgt_allele` - the original IUIS/IMGT allele name
+- `alleles_family` - the ASC cluster number
+- `alleles_group` - the ASC cluster number
+- `new_allele` - the ASC given allele name
+- `duplicated` - if the allele has a duplicated allele within the set
+2. An MDS plot of the input germline reference set. The two axis are the first components. Each dot in the plot is an allele. The colors of the dots are by the original genes (if present in the allele name).
+3. ASC cluster plot - shows the hierarchical clustering of the input germline reference set. The out most circle is the allele names, the second layer are the ASC groups, each group is labeled and colored. The third circle is the clustering dendrogram, the braches are colored by the ASC families. The blue and orange dashed lines are the 95% and 75% similarity ASC threshold.
+4. ASC match plot - shows the matching btween the IUIS/IMGT genes and the ASC clusters.
 
-<!-- ```{=html} -->
-<!--  <iframe id="example1" src="https://peresay.shinyapps.io/reference_cluster_app/" style="border: none; width: 100%; height: 720px" frameborder="0"></iframe> -->
-<!-- ``` -->
+```{=html}
+ <iframe id="example1" src="https://peresay.shinyapps.io/reference_cluster_app/" style="border: none; width: 100%; height: 720px" frameborder="0"></iframe>
+```
 
 ### References
 

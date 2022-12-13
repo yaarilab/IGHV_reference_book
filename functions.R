@@ -1,4 +1,4 @@
-pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales', 'data.table',
+pacman::p_load('dplyr', 'tidyr', 'htmltools', 'bbplot', 'scales', 'data.table', 'ggmsa',
                'ggplot2', 'rdrop2', 'shiny', 'BiocManager', 'DECIPHER', 'ComplexUpset',
                'dendextend', 'data.table', 'Biostrings', 'alakazam', "unikn", 'ggupset',
                'plotly', "jcolors", 'ggdendro', "RColorBrewer","kmer","heatmaply", install = F)
